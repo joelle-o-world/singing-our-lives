@@ -1,0 +1,16 @@
+{
+  "name": "sol_webapp",
+  "version": "0.0.2",
+  "description": "V2 of WebApp for Singing Our Lives III",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Sean Norris",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
