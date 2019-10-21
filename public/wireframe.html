@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8">
+    <title>Singing Our Lives</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+  </head>
+
+
+  <script>
+    window.onload = function() {
+      showPage(0);
+    }
+
+    function showPage(pageIndexOrID) {
+      // Hide all other pages.
+      const pages = document.getElementById("pages").children;
+      for(let page of pages)
+        page.style.display = "none";
+
+
+      if(typeof pageIndexOrID == "string")
+        // Open a page using its 'id' attribute.
+        document.getElementById(pageIndexOrID).style.display = "block";
+
+      else if(typeof pageIndexOrID == "number") {
+        // Open a page using a numeric id.
+        pages[pageIndexOrID].style.display = "block";
+      }
+
+    }
+  </script>
+
+  <body>
+    <span id="pages">
+
+      <div id="welcome_page">
+        <!-- PAGE 1 -->
+        <h1>Welcome.</h1>
+        <button
+          class="nextbtn"
+          onclick = "showPage('recording_page')"
+        >Take Part.</button>
+      </div>
+
+      <div id="recording_page">
+        <!-- PAGE 2 -->
+        <span id="recorder_wrapper"></span>
+
+        <button class=nextbtn onclick="showPage('thank_you_page')">Continue</button>
+      </div>
+
+      <div id="thank_you_page">
+        <!-- PAGE 3 -->
+        <h1>Thank you.</h1>
+        <p>Thank you for contributing to Singing Our Lives! Please provide your email address below if you are okay with us getting in contact with you.  Please also add anything else that you didn't get a chance to say earlier, and press 'Submit' when you are finished.</p>
+
+        <form action="">
+          <input name="email" placeholder="email (optional" />
+          <br>
+          <textarea name="comment" placeholder="Anything else to add?"></textarea>
+          <br>
+          <button>Submit</button>
+        </form>
+      </div>
+
+    </span>
+  </body>
+
+</html>
