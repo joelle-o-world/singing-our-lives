@@ -1,4 +1,8 @@
-class Recorder{
+import {AudioIn, SoundFile, SoundRecorder} from 'p5';
+
+const p5mic = new AudioIn();
+
+class RecorderInterface {
   constructor(parentID,index){
     this.parent = document.getElementById(parentID);
     this.recorderBody;
@@ -33,4 +37,26 @@ class Recorder{
     this.recorderBody.appendChild(this.playbackbutton);
     this.parent.appendChild(this.recorderBody);
   }
+
+  record() {
+    console.log("## Calling record()")
+    this.recorder = new SoundRecorder();
+    this.recorder.setInput(p5mic);
+    this.soundFile = new SoundFile();
+    this.recorder.record(this.p5soundFile);
+  }
+
+  stop() {
+    console.log("## Calling stop()")
+    this.recorder.stop();
+  }
+
+  play() {
+    console.log("## Calling play()")
+    this.soundFile.play();
+  }
 }
+
+export {RecorderInterface}
+
+module.exports.RecorderInterface = RecorderInterface
