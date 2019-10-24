@@ -1,18 +1,16 @@
 class RecorderGroup{
-  constructor(){
-    this.rg = new Recorder();
-    this.parent;
-    this.testDIV;
+  constructor(parentID){
+    this.num_recorders = 1;
+    this.recorders = [this.num_recorders];
+    for(let i = 0; i < this.num_recorders; i++){
+      this.recorders[i] = new Recorder();
+    }
+    this.parent = document.getElementById(parentID);
   }
 
   makeHTML(){
-    this.parent = document.getElementById('recorderGroupWrapper');
-
-    this.testDIV = document.createElement('div');
-    this.testDIV.id = 'recorderWrapper';
-
-    this.parent.appendChild(this.testDIV);
-
-    this.rg.makeHTML();
+    for(let i = 0; i < this.num_recorders; i++){
+      this.parent.appendChild(this.recorders[i].makeHTML());
+    }
   }
 }

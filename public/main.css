@@ -1,0 +1,91 @@
+/* GLOBAL */
+body {
+  font-family: Arial;
+  font-weight: 100;
+}
+
+#pages > div {
+  position: fixed;
+  top:0px;
+  bottom:0px;
+  left:0px;
+  right:0px;
+  overflow:auto;
+}
+
+button {
+  background-color:black;
+  color:white;
+  border:1px solid black;
+}
+button:hover {
+  background-color:white;
+  color:black;
+}
+
+button.nextbtn {
+  font-family: Arial;
+  font-weight: 100;
+  font-size: 30px;
+  margin-top: 20px;
+  padding-left:60px;
+  padding-right:60px;
+  height:35px;
+}
+
+/* WELCOME PAGE */
+#welcome_page {
+  text-align: center;
+  margin-top:30%;
+}
+
+#welcome_page > h1 {
+  font-family: Arial;
+  font-weight: 200;
+  font-size:60px;
+  margin-bottom:100px;
+}
+
+/* RECORDING PAGE */
+#recording_page {
+  text-align:center;
+  margin-top:30%;
+}
+
+#recorder_wrapper:empty {
+  border:1px dashed #ccc;
+  background: dotted #ccc;
+  display: block;
+  width:300px;
+  height:300px;
+  margin-right:auto;
+  margin-left:auto;
+}
+
+
+.recorder_body{
+  width:300px;
+  height:300px;  
+  margin-right:auto;
+  margin-left:auto;
+}
+
+.recorderButton{
+  display: block;
+  width: 100%;
+  height: 33%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right:auto;
+  margin-left:auto;
+  font-size: 30px;
+}
+
+
+/* THANK YOU PAGE */
+#thank_you_page {
+  text-align:center;
+  margin-top:30%;
+  margin-left:20%;
+  margin-right:20%;
+}
