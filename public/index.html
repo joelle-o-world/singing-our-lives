@@ -5,40 +5,38 @@
     <title>Singing Our Lives</title>
     <link rel="stylesheet" type="text/css" href="main.css" />
 
-    <!-- p5.js libs: -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.min.js"></script>
     <!-- include socket libs: -->
     <script src="/socket.io/socket.io.js"></script>
 
     <link rel="stylesheet" href="recorderstyle.css">
-    <script src="recorderclass.js"></script>
-    <script src="recordergroup.js"></script>
 
-    <script src="sketch.js"></script>
+    <script type="text/javascript" src="sol.bundle.js"></script>
   </head>
 
 
   <script>
     window.onload = function() {
       showPage(0);
+
+      let recorderIO = new RecorderInterface();
+      document.getElementById("recorder_wrapper")
+        .appendChild(recorderIO.makeHTML());
     }
 
     function showPage(pageIndexOrID) {
       // Hide all other pages.
       const pages = document.getElementById("pages").children;
       for(let page of pages)
-        page.style.display = "none";
+        page.hidden = true;
 
 
       if(typeof pageIndexOrID == "string")
         // Open a page using its 'id' attribute.
-        document.getElementById(pageIndexOrID).style.display = "block";
+        document.getElementById(pageIndexOrID).hidden = false;
 
       else if(typeof pageIndexOrID == "number") {
         // Open a page using a numeric id.
-        pages[pageIndexOrID].style.display = "block";
+        pages[pageIndexOrID].hidden = false;
       }
 
     }
