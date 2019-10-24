@@ -1,21 +1,23 @@
 import {AudioIn, SoundFile, SoundRecorder} from 'p5';
 import 'p5/lib/addons/p5.sound';
 
-const micRoberts = new AudioIn;
-console.log('p5 audio in:', micRoberts)
+const micRoberts = new AudioIn();
+console.log('p5 audio in:', micRoberts);
 
 class RecorderInterface {
   constructor(){
     this.makeHTML();
 
     this.updateState("waiting");
+
+
   }
 
 
   makeHTML(){
     // Return recorder body and exit early if already exists.
     if(this.recorderBody)
-      return this.recorderBody;
+    return this.recorderBody;
 
     //create a new div to contain the HTML for this object:
     this.recorderBody = document.createElement('div');
@@ -56,50 +58,58 @@ class RecorderInterface {
 
     switch(state) {
       case 'waiting':
-        console.log("## state is waiting")
-        this.recordbutton.innerText = "Start Recording";
-        this.recordbutton.hidden = false;
-        this.stoprecordingbutton.hidden = true;
-        this.playbackbutton.hidden = true;
-        console.log('##', this.playbackbutton, this.playbackbutton.hidden)
-        break;
-      
+      console.log("## state is waiting")
+      this.recordbutton.innerText = "Start Recording";
+      this.recordbutton.hidden = false;
+      this.stoprecordingbutton.hidden = true;
+      this.playbackbutton.hidden = true;
+      console.log('##', this.playbackbutton, this.playbackbutton.hidden)
+      break;
+
       case 'recording':
-        this.recordbutton.hidden = true;
-        this.stoprecordingbutton.hidden = false;
-        this.playbackbutton.hidden = true;
-        break;
-      
+      this.recordbutton.hidden = true;
+      this.stoprecordingbutton.hidden = false;
+      this.playbackbutton.hidden = true;
+      break;
+
       case 'recorded':
-        this.recordbutton.innerText = "Record again?"
-        this.recordbutton.hidden = false;
-        this.stoprecordingbutton.hidden = true;
-        this.playbackbutton.hidden = false;
-        break;
+      this.recordbutton.innerText = "Record again?"
+      this.recordbutton.hidden = false;
+      this.stoprecordingbutton.hidden = true;
+      this.playbackbutton.hidden = false;
+      break;
 
       case 'playing':
-        break;
+      break;
 
       default:
-        console.warn("Unknown state:", state);
+      console.warn("Unknown state:", state);
     }
   }
 
   record() {
-    console.log("## Calling record()")
+    console.log("## Calling record()");
 
-    this.recorder = new SoundRecorder();
-    this.recorder.setInput(micRoberts);
-    this.soundFile = new SoundFile();
-    this.recorder.record(this.soundFile);
+    //start AudioIn after user interacts with page (i.e. after button is clicked and this function executes):
+    micRoberts.start();
+    console.log(micRoberts.enabled);
 
-    this.updateState("recording");
+    if(micRoberts.enabled){
+      this.recorder = new SoundRecorder();
+      this.recorder.setInput(micRoberts);
+      this.soundFile = new SoundFile();
+      this.recorder.record(this.soundFile);
+
+      this.updateState("recording");
+    } else {
+      console.warn('AudioIn was not enabled.')
+    }
   }
 
   stop() {
-    console.log("## Calling stop()")
+    console.log("## Calling stop()");
     this.recorder.stop();
-    this.updateState("recorded")
+    this.updateState("recorded");
   }
 
   play() {
