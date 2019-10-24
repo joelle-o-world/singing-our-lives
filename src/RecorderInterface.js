@@ -94,7 +94,7 @@ class RecorderInterface {
     micRoberts.start();
     console.log(micRoberts.enabled);
 
-    if(micRoberts.enabled){
+    if(micRoberts.enabled){//only start recording audio if the AudioIn is enabled
       this.recorder = new SoundRecorder();
       this.recorder.setInput(micRoberts);
       this.soundFile = new SoundFile();
@@ -102,7 +102,7 @@ class RecorderInterface {
 
       this.updateState("recording");
     } else {
-      console.warn('AudioIn was not enabled.')
+      console.warn('AudioIn was not enabled.');//send a warning if the AudioIn was not enabled
     }
   }
 
