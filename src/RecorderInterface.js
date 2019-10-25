@@ -7,10 +7,7 @@ console.log('p5 audio in:', micRoberts);
 class RecorderInterface {
   constructor(){
     this.makeHTML();
-
     this.updateState("waiting");
-
-
   }
 
 
@@ -54,7 +51,7 @@ class RecorderInterface {
   updateState(state) {
     this.state = state;
 
-    console.log("updateState(", state, ")")
+    console.log("## updateState(", state, ")")
 
     switch(state) {
       case 'waiting':
@@ -63,7 +60,6 @@ class RecorderInterface {
       this.recordbutton.hidden = false;
       this.stoprecordingbutton.hidden = true;
       this.playbackbutton.hidden = true;
-      console.log('##', this.playbackbutton, this.playbackbutton.hidden)
       break;
 
       case 'recording':
@@ -90,10 +86,6 @@ class RecorderInterface {
   record() {
     console.log("## Calling record()");
 
-    //start AudioIn after user interacts with page (i.e. after button is clicked and this function executes):
-    micRoberts.start();
-    console.log(micRoberts.enabled);
-
     if(micRoberts.enabled){//only start recording audio if the AudioIn is enabled
       this.recorder = new SoundRecorder();
       this.recorder.setInput(micRoberts);
@@ -102,7 +94,17 @@ class RecorderInterface {
 
       this.updateState("recording");
     } else {
-      console.warn('AudioIn was not enabled.');//send a warning if the AudioIn was not enabled
+      micRoberts.start(
+        () => {
+          // Success :)
+          console.log('## User enabled audio..')
+          this.record();
+        },
+        () => {
+          // Failure :(
+          console.warn("AudioIn.start failed.")
+        }
+      )
     }
   }
 
