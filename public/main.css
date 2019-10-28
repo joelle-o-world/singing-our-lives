@@ -18,7 +18,7 @@ button {
   color:white;
   border:1px solid black;
 }
-button:hover {
+button:enabled:hover {
   background-color:white;
   color:black;
 }
@@ -64,8 +64,7 @@ button.nextbtn {
 
 
 .recorder_body{
-  width:300px;
-  height:300px;  
+  width:300px; 
   margin-right:auto;
   margin-left:auto;
 }
@@ -78,6 +77,11 @@ button.nextbtn {
   margin-right:auto;
   margin-left:auto;
   font-size: 30px;
+}
+.recorderButton:disabled {
+  color:#999999;
+  background-color:#333333;
+
 }
 
 
