@@ -13,10 +13,19 @@
 
 
   <script>
+    const socket = io();
+    console.log("## Socket: ", socket)
+
     window.onload = function() {
       showPage(0);
 
       let recorderIO = new RecorderInterface();
+      recorderIO.onupload = files => {
+        socket.emit('audioupload', files.map(blob => ({
+          buffer: blob,
+          type: blob.type
+        })));
+      }
       document.getElementById("recorder_wrapper")
         .appendChild(recorderIO.makeHTML());
     }
@@ -36,7 +45,6 @@
         // Open a page using a numeric id.
         pages[pageIndexOrID].hidden = false;
       }
-
     }
   </script>
 

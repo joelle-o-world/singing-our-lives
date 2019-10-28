@@ -7,6 +7,8 @@ let mediaRecorder;
 class RecorderInterface {
   constructor(){
     this.recordings = [];
+
+    this.onupload = null;
     
     this.makeHTML();
     this.updateState("waiting");
@@ -86,7 +88,7 @@ class RecorderInterface {
     this.uploadBtn.innerText = "Send " 
       +  nEnabledRecordings
       + " recordings";
-    this.uploadBtn.disabled = nEnabledRecordings == 0;
+    this.uploadBtn.hidden = nEnabledRecordings == 0;
   }
 
   record() {
@@ -113,15 +115,18 @@ class RecorderInterface {
 
         //event handler, executed whenever new data is available from the MediaRecorder
         mediaRecorder.ondataavailable = e => {
-          console.log('## data available');
+          console.log('## data available', e.data.type);
           chunks.push(e.data);
         }
 
         //event handler, executed when MediaRecorder.stop() is called:
         mediaRecorder.onstop = e => {
           console.log('## mediaRecorder.onstop event ocurred.');
+          let mime = chunks[0].type;
+          if(chunks.some(chunk => chunk.type != mime))
+            throw "Something bad happened.";
 
-          let blob = new Blob(chunks, {type: 'audio/wav;'});
+          let blob = new Blob(chunks, {type: mime});
           this.addPlayback(blob);
         }
       })
