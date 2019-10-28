@@ -160,7 +160,8 @@ class RecorderInterface {
     let blobsToUpload = this.recordings.filter(o => o.enabled)
       .map(o => o.audioBlob);
     
-    console.log("## blobs to upload:", blobsToUpload);
+    if(this.onupload)
+      this.onupload(blobsToUpload);
 
     this.clearPlaybacks();
   }
