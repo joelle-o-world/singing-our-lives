@@ -2,6 +2,8 @@ import { PlaybackInterface } from "./PlaybackInterface";
 
 /** Ordered list of MIME types. The recorder will choose the first type in the list that is supported by the MediaStream. */
 const mimePriorities = [
+  'audio/vnd.wave',
+  'audio/wave',
   'audio/wav',
   'audio/x-wav',
   'audio/webm',
@@ -20,7 +22,6 @@ class RecorderInterface {
     this.makeHTML();
     this.updateState("waiting");
   }
-
 
   makeHTML(){
     // Return recorder body and exit early if already exists.
