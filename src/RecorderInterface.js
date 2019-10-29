@@ -14,7 +14,7 @@ const mimePriorities = [
 //https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Using_the_MediaStream_Recording_API
 let mediaRecorder;
 class RecorderInterface {
-  constructor(){
+  constructor() {
     this.recordings = [];
 
     this.onupload = null;
@@ -70,13 +70,19 @@ class RecorderInterface {
 
       switch(state) {
         case 'waiting':
-          console.log("## state is waiting")
           this.recordbutton.innerText = "Start Recording";
           this.recordbutton.disabled = false;
           this.stoprecordingbutton.disabled = true;
           break;
 
+        case 'requestingAudio':
+          this.recordbutton.innerText = "Please enable microphone..";
+          this.recordbutton.disabled = true;
+          this.stoprecordingbutton.disabled = true;
+          break;
+
         case 'recording':
+          this.recordbutton.innerText = 'Recording...'
           this.recordbutton.disabled = true;
           this.stoprecordingbutton.disabled = false;
           break;
@@ -101,7 +107,7 @@ class RecorderInterface {
 
   record() {
     console.log("## Calling record()");
-    this.updateState('recording');
+    this.updateState("requestingAudio");
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {//Check whether getUserMedia is supported by the browser before running anything else
       console.log('## getUserMedia supported.');//Print if it is supported
@@ -111,6 +117,8 @@ class RecorderInterface {
         video: false
       })//returns a promise
       .then(stream => { //execute if successful
+
+        this.updateState('recording');
         console.log("## Stream sucessfully established. Recording...");
         let audioElement = document.getElementById('recorderAudio');
 
