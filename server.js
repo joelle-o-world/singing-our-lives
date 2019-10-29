@@ -8,6 +8,11 @@
 const fs = require('fs');
 const path = require('path')
 const express = require('express');
+const extName = require('ext-name');
+
+const {
+  acceptableMediaFileExtensions,
+} = require("./config.js")
 
 const app = express();
 const serv_port = 3000;
@@ -46,33 +51,28 @@ function newConnection(socket){
 
     let n = 1;
     for(let {type, buffer} of files) {
+      // Destructure media type string.
       const [MIME, codec] = type.split(";");
-      if(MIME == "audio/wav;") {
-        let filename = (sessionAudioFiles.length+1) + '.wav'
-        let filepath = path.resolve(
-          sessionDirectory, filename
-        );
+      
+      // Find appropriate file extension based on MIME
+      const [{ext}] = extName.mime(MIME);
+
+      // If found a file extension and its in the list
+      if(ext && acceptableMediaFileExtensions.includes(ext)) {
+        let filename = (sessionAudioFiles.length+1) + '.' + ext;
+        let filepath = path.resolve(sessionDirectory, filename);
         sessionAudioFiles.push(filepath);
 
         console.log("Saving", filepath);
         fs.mkdirSync(sessionDirectory);
-        fs.writeFile(filepath, buffer, 
-          () => console.log("Saved ", filepath)
-        );
-      } else if(MIME == "audio/webm") {
-        let filename = (sessionAudioFiles.length+1) + '.webm'
-        let filepath = path.resolve(
-          sessionDirectory, filename
-        );
-        sessionAudioFiles.push(filepath);
-
-        console.log("Saving", filepath);
-        fs.mkdirSync(sessionDirectory);
-        fs.writeFile(filepath, buffer, 
-          () => console.log("Saved ", filepath)
-        );
+        fs.writeFile(filepath, buffer, err => {
+          if(err)
+            console.log("Error saving audio file:", filepath);
+          else
+            console.log("Successfully saved", filepath);
+        })
       } else
-        console.warn("Unsupported MIME:", '\"'+type+'\"');
+        console.log("Unsupported MIME:", MIME, '('+ext+')');
     }
   })
   
