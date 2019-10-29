@@ -6,6 +6,6 @@ Install the repository with npm.
 
 Run `$ npx webpack`
 
-run `$ node server.js`.
+run `$ node server`.
 
 Navigate to `http://localhost:3000` in your browser.

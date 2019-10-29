@@ -1,5 +1,12 @@
 import { PlaybackInterface } from "./PlaybackInterface";
 
+/** Ordered list of MIME types. The recorder will choose the first type in the list that is supported by the MediaStream. */
+const mimePriorities = [
+  'audio/wav',
+  'audio/x-wav',
+  'audio/webm',
+]
+
 //October 27, 2019
 //Rewriting RecorderInterface using Mozilla MediaStream Recorder API
 //https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Using_the_MediaStream_Recording_API
@@ -106,8 +113,21 @@ class RecorderInterface {
         console.log("## Stream sucessfully established. Recording...");
         let audioElement = document.getElementById('recorderAudio');
 
-        mediaRecorder = new MediaRecorder(stream);//pass the stream into new MediaRecorder()
-        let chunks = []; //array to store audio chunks
+        let mimeType = undefined;
+        for(let mime of mimePriorities)
+          if(MediaSource.isTypeSupported(mime)) {
+            mimeType = mime;
+            break;
+          }
+
+        // pass the stream into new MediaRecorder()
+        mediaRecorder = new MediaRecorder(
+          stream, 
+          {mimeType},
+        );
+
+        /** array to store audio chunks */
+        let chunks = []; 
 
         mediaRecorder.start(); //start recording
 
@@ -131,10 +151,10 @@ class RecorderInterface {
         }
       })
       .catch(function(err) {//execute if error
-        console.log('The following getUserMedia error occured: ' + err);
+        console.error('The following getUserMedia error occured: ' + err);
       });
     } else {
-      console.log('getUserMedia not supported on your browser!'); //Print if getUserMedia is not supported
+      console.error('getUserMedia not supported on your browser!'); //Print if getUserMedia is not supported
     }
 
   }

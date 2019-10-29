@@ -12,10 +12,11 @@ const extName = require('ext-name');
 
 const {
   acceptableMediaFileExtensions,
+  serv_port,
+  outputDir
 } = require("./config.js")
 
 const app = express();
-const serv_port = 3000;
 const  server = app.listen(serv_port);
 app.use(express.static('public'));
 
@@ -28,7 +29,7 @@ function newConnection(socket){
   //Print the id of each new socket connection:
   console.log('New connection with socket ID ' + socket.id);
 
-  const sessionDirectory = "./formfills/" + socket.id;
+  const sessionDirectory = path.resolve(outputDir, socket.id)
   const sessionAudioFiles = [];
 
   socket.on('formFill', data => {
