@@ -46,8 +46,21 @@ function newConnection(socket){
 
     let n = 1;
     for(let {type, buffer} of files) {
-      if(type == "audio/wav;") {
+      const [MIME, codec] = type.split(";");
+      if(MIME == "audio/wav;") {
         let filename = (sessionAudioFiles.length+1) + '.wav'
+        let filepath = path.resolve(
+          sessionDirectory, filename
+        );
+        sessionAudioFiles.push(filepath);
+
+        console.log("Saving", filepath);
+        fs.mkdirSync(sessionDirectory);
+        fs.writeFile(filepath, buffer, 
+          () => console.log("Saved ", filepath)
+        );
+      } else if(MIME == "audio/webm") {
+        let filename = (sessionAudioFiles.length+1) + '.webm'
         let filepath = path.resolve(
           sessionDirectory, filename
         );
