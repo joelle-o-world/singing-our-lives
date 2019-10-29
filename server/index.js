@@ -33,18 +33,16 @@ function newConnection(socket){
   const sessionAudioFiles = [];
 
   socket.on('formFill', data => {
-    console.log("Form received: ");
-    console.log(data);
+    console.log("User", socket.id, "submitted feedback", data);
 
-
-    let filename = path.resolve(sessionDirectory, "feedback.json");
+    let filePath = path.resolve(sessionDirectory, "feedback.json");
     let json = JSON.stringify(data,null,2);
     //make a folder to hold the json and, later, the wav file:
     if(!fs.existsSync(sessionDirectory))
       fs.mkdirSync(sessionDirectory);
     //write the json file:
-    fs.writeFileSync(filename, json);
-    console.log("Form saved as " + filename + ".");
+    fs.writeFileSync(filePath, json);
+    console.log("Form saved as " + filePath + ".");
   });
   
   socket.on('audioupload', files => {

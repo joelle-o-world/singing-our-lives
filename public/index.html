@@ -46,6 +46,23 @@
         pages[pageIndexOrID].hidden = false;
       }
     }
+
+    function thankYouForm(e) {
+      // prevent page refresh
+      e.preventDefault();
+      
+      const form = document.getElementById('thank_you_form');
+
+      const feedback = {
+        email: form.elements.namedItem("email").value,
+        comment: form.elements.namedItem("comment").value
+      }
+
+      socket.emit('formFill', feedback)
+
+      form.hidden = true;
+      document.getElementById("thanks_again").hidden = false;
+    }
   </script>
 
   <body>
@@ -72,13 +89,14 @@
         <h1>Thank you.</h1>
         <p>Thank you for contributing to Singing Our Lives! Please provide your email address below if you are okay with us getting in contact with you.  Please also add anything else that you didn't get a chance to say earlier, and press 'Submit' when you are finished.</p>
 
-        <form action="">
+        <form id="thank_you_form">
           <input name="email" placeholder="email (optional" />
           <br>
           <textarea name="comment" placeholder="Anything else to add?"></textarea>
           <br>
-          <button>Submit</button>
+          <button onclick="thankYouForm(event)">Submit</button>
         </form>
+        <div id=thanks_again hidden>Thanks for your feedback!</div>
       </div>
 
     </span>
