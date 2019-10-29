@@ -37,11 +37,11 @@ function newConnection(socket){
     console.log(data);
 
 
-    let filepath = sessionDirectory
-    let filename = path.resolve(filepath, "feedback.json");
+    let filename = path.resolve(sessionDirectory, "feedback.json");
     let json = JSON.stringify(data,null,2);
     //make a folder to hold the json and, later, the wav file:
-    fs.mkdirSync(filepath);
+    if(!fs.existsSync(sessionDirectory))
+      fs.mkdirSync(sessionDirectory);
     //write the json file:
     fs.writeFileSync(filename, json);
     console.log("Form saved as " + filename + ".");
@@ -65,7 +65,8 @@ function newConnection(socket){
         sessionAudioFiles.push(filepath);
 
         console.log("Saving", filepath);
-        fs.mkdirSync(sessionDirectory);
+        if(!fs.existsSync(sessionDirectory))
+          fs.mkdirSync(sessionDirectory);
         fs.writeFile(filepath, buffer, err => {
           if(err)
             console.log("Error saving audio file:", filepath);
