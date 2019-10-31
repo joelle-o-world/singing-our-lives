@@ -2,10 +2,11 @@
   "name": "sol_webapp",
   "version": "0.0.2",
   "description": "V2 of WebApp for Singing Our Lives III",
-  "main": "server.js",
+  "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "pre-start": "npx webpack",
+    "start": "node server/index.js"
   },
   "author": "Sean Norris",
   "license": "ISC",
