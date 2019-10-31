@@ -1,5 +1,6 @@
 module.exports = {
   apps: [{
+    name: "Singin our lives",
     script: "server/index.js",
     watch: ["server", "public"],
     // Delay between restart
