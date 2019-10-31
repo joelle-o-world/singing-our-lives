@@ -1,14 +1,142 @@
-<html>
-    <head>
-        <!-- p5.js libs: -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.min.js"></script>
-        <!-- include socket libs: -->
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="sketch.js"></script>
-        <title>Singing Our Lives III</title>
-    </head>
-    <body id = "docbod">
-    </body>
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <title>Singing Our Lives</title>
+  <link rel="stylesheet" type="text/css" href="main.css" />
+
+  <!-- include socket libs: -->
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script type="text/javascript" src="sol.bundle.js"></script>
+</head>
+
+
+<script>
+const socket = io();
+console.log("## Socket: ", socket)
+
+window.onload = function() {
+  showPage(0);
+
+  let recorderIO = new RecorderInterface();
+  recorderIO.onupload = files => {
+    socket.emit('audioupload', files.map(blob => ({
+      buffer: blob,
+      type: blob.type
+    })));
+  }
+  document.getElementById("recorder_wrapper")
+  .appendChild(recorderIO.makeHTML());
+}
+
+function showPage(pageIndexOrID) {
+  // Hide all other pages.
+  const pages = document.getElementById("pages").children;
+  for(let page of pages)
+  page.hidden = true;
+
+
+  if(typeof pageIndexOrID == "string")
+  // Open a page using its 'id' attribute.
+  document.getElementById(pageIndexOrID).hidden = false;
+
+  else if(typeof pageIndexOrID == "number") {
+    // Open a page using a numeric id.
+    pages[pageIndexOrID].hidden = false;
+  }
+}
+
+function thankYouForm(e) {
+  // prevent page refresh
+  e.preventDefault();
+
+  const form = document.getElementById('thank_you_form');
+
+  const feedback = {
+    email: form.elements.namedItem("email").value,
+    comment: form.elements.namedItem("comment").value
+  }
+
+  socket.emit('formFill', feedback)
+
+  form.hidden = true;
+  document.getElementById("thanks_again").hidden = false;
+}
+</script>
+
+<body>
+  <span id="pages">
+
+    <div id="welcome_page">
+      <!-- PAGE 1 -->
+      <div id="welcome_header">
+        <!-- images -->
+      </div>
+      <div id="welcome_text_wrapper">
+        <div id="welcome_titles">
+          <h2>Welcome to the Singing Our Lives Songwriting Project:</h2>
+          <h1>Singing Your Life</h1>
+        </div>
+        <div id="welcome_body">
+          <p>On this site you will be able to become part of a massive songwriting project!</p>
+          <p>Now in its third year, <a href="http://togetherproductions.co.uk/singing-our-lives.html">Singing Our Lives</a> is a ground-breaking project bringing refugees, migrants and the wider communities across the UK together with professional musicians to compose new music and perform together.</p>
+          <p>Conceived and developed by <a href="http://togetherproductions.co.uk/">Together Productions</a>, the project has attracted partners including the Royal Opera House, Guildhall School of Music and Drama and the International Organization for Migration, amongst many others. The project celebrates diversity and solidarity through choral music and has pioneered a unique collaborative dialogue and composition process that results in powerful new works reflecting the culture and experiences of hundreds of people from diverse backgrounds across the UK.</p>
+          <strong>We are now expanding the project to enable anyone to be included!</strong>
+          <p><strong>HOW:</strong> On the following page, you can record your own music (up to 5 mins), or upload lyrics or an image that is your response to the prompt on that page.</p>
+          <p><strong>WHY?:</strong> So far the Singing Our Lives choirs have collectively written <a href="https://soundcloud.com/user-253631663/sets/singing-our-lives-1">four wonderful songs</a> and we would love to include your ideas for the next phase of the project. Once they are written we will invite you to hear them performed live in concert and you will be part of a global creative team that aims to bring together people who otherwise would never meet, to celebrate our similarities as well as our differences.</p>
+          <p><strong>BUT I CAN’T SING!</strong> We welcome everyone’s contributions, no matter whether you’re a complete beginner or experienced creative; we believe everyone has a voice!</p>
+          <p><strong>WHAT WILL YOU DO WITH MY CONTRIBUTION:</strong> Our brilliant creative team of composer <a href="http://www.stilltimemusic.co.uk/">Mike Roberts</a> and librettist <a href="https://en.wikipedia.org/wiki/Tess_Berry-Hart">Tess Berry-Hart</a> will add your contributions to the mix and will curate it into three brand new songs!</p>
+        </div>
+      </div>
+      <button
+      class="nextbtn"
+      onclick = "showPage('recording_page')"
+      >Take Part.</button>
+      <div id="welcome_footer">
+        <div id="produced">
+          <p>Produced by:</p>
+          <img height="100%" src="assets/imgs/gsmd_logo.jpg">
+        </div>
+        <div id="funded">
+          <p>Funded by:</p>
+          <!-- images -->
+        </div>
+      </div>
+    </div>
+
+    <div id="recording_page">
+      <!-- PAGE 2 -->
+      <span id="recorder_wrapper"></span>
+
+      <button class=nextbtn onclick="showPage('thank_you_page')">Continue</button>
+    </div>
+
+    <div id="thank_you_page">
+      <!-- PAGE 3 -->
+      <div id="thank_you_page_text_wrapper">
+        <div id="thank_you_titles">
+          <h2>Thank you so much for being part of the Singing Our Lives Songwriting Project:</h2>
+          <h1>Singing Your Life.</h1>
+        </div>
+        <div id="thank_you_body">
+          <p>Your creative contributions are now in the big pool of music, words and art that our team are going to turn into new songs.</p>
+          <p>We would love to stay in touch with you so we can let you know what’s happening with the project and invite you to hear them when they are complete.</p>
+          <p>Please complete your details here to join our mailing list. If you’d like to upload a headshot of yourself that would be great too!</p>
+        </div>
+      </div>
+
+      <form id="thank_you_form">
+        <input name="email" placeholder="email (optional" />
+        <br>
+        <textarea name="comment" placeholder="Anything else to add?"></textarea>
+        <br>
+        <button onclick="thankYouForm(event)">Submit</button>
+      </form>
+      <div id=thanks_again hidden>Thanks for your feedback!</div>
+    </div>
+
+  </span>
+</body>
+
 </html>
