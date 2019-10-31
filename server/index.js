@@ -40,11 +40,12 @@ function newConnection(socket){
     //make a folder to hold the json and, later, the wav file:
     if(!fs.existsSync(sessionDirectory))
       fs.mkdirSync(sessionDirectory);
+
     //write the json file:
     fs.writeFileSync(filePath, json);
     console.log("Form saved as " + filePath + ".");
   });
-  
+
   socket.on('audioupload', files => {
     console.log("User", socket.id, "uploaded", files.length, "recordings");
 
@@ -52,7 +53,7 @@ function newConnection(socket){
     for(let {type, buffer} of files) {
       // Destructure media type string.
       const [MIME, codec] = type.split(";");
-      
+
       // Find appropriate file extension based on MIME
       const [{ext}] = extName.mime(MIME);
 
@@ -75,7 +76,7 @@ function newConnection(socket){
         console.log("Unsupported MIME:", MIME, '('+ext+')');
     }
   })
-  
+
 
   socket.on('disconnect', () => {
     console.log("User disconnected", socket.id);
