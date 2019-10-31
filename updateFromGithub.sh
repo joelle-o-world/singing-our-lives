@@ -7,7 +7,7 @@ then
   echo "Applying update from github...";
   git pull;
   npx webpack;
-  pm2 restart "Singing our lives"
+  pm2 restart "singing-our-lives"
 else
   echo "No changes on github."
 fi
