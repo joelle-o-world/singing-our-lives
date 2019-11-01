@@ -165,10 +165,13 @@ div > img{
 
 /* THANK YOU PAGE */
 #thank_you_page {
-  text-align:center;
   margin-top:10%;
   margin-left:10%;
   margin-right:10%;
+}
+
+#thank_you_titles{
+  text-align: center;
 }
 
 #thank_you_body{
@@ -176,14 +179,15 @@ div > img{
 }
 
 #form_wrap{
-  margin-left: 10%;
-  margin-right: 10%;
   text-align: left;
   /* background-color: grey; */
   width: 100%;
 }
 input{
-  width: 90%;
+  width: 30%;
   margin:5px 0;
+}
+textarea{
+  wo
 }
 /***********************************/
