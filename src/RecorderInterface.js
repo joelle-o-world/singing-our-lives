@@ -9,12 +9,12 @@ const mimePriorities = [
   'audio/webm',
 ]
 
-
+let mediaRecorder;
 class RecorderInterface {
   constructor() {
     this.recordings = [];
 
-    this.onupload = null;
+    this.onrecord = null;
 
     this.makeHTML();
     this.updateState("waiting");
@@ -36,14 +36,16 @@ class RecorderInterface {
     this.recordbutton.innerHTML = 'Start Recording';
     this.recordbutton.addEventListener("click", () => this.record());
 
+    //create a heading:
+    this.heading = document.createElement('h1');
+    this.heading.id = 'recorder_heading';
+    this.heading.innerHTML = 'Make a new recording:';
+
     // create a stop recording button
     this.stoprecordingbutton = document.createElement("button");
     this.stoprecordingbutton.className = "recorderButton";
     this.stoprecordingbutton.innerHTML = "Stop Recording";
     this.stoprecordingbutton.addEventListener("click", () => this.stop());
-
-    // Create div for playback interfaces
-    this.playbacksDiv = document.createElement('div');
 
     // Add an upload button
     this.uploadBtn = document.createElement('button');
@@ -52,9 +54,9 @@ class RecorderInterface {
     this.uploadBtn.addEventListener('click', () => this.upload())
 
     //append all elements to the recorderBody:
+    this.recorderBody.appendChild(this.heading);
     this.recorderBody.appendChild(this.recordbutton);
     this.recorderBody.appendChild(this.stoprecordingbutton);
-    this.recorderBody.appendChild(this.playbacksDiv);
     this.recorderBody.appendChild(this.uploadBtn);
     return this.recorderBody;
   }
@@ -152,7 +154,10 @@ class RecorderInterface {
             throw "Something bad happened.";
 
           let blob = new Blob(chunks, {type: mime});
-          //emit blob to mediauploads
+          if(this.onrecord){
+            this.onrecord(blob);
+          }
+
         }
       })
       .catch(function(err) {//execute if error
@@ -168,14 +173,6 @@ class RecorderInterface {
     console.log("## Calling stop()");
     mediaRecorder.stop();
     this.updateState("recorded");
-  }
-
-  addPlayback(blob) {
-    let player = new PlaybackInterface(blob, this);
-    this.playbacksDiv.appendChild(player.makeHTML());
-    this.recordings.push(player);
-
-    this.updateState();
   }
 
   clearPlaybacks() {

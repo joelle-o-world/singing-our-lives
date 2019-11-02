@@ -46,7 +46,7 @@ function newConnection(socket){
     console.log("Form saved as " + filePath + ".");
   });
 
-  socket.on('audioupload', files => {
+  socket.on('upload', files => {
     console.log("User", socket.id, "uploaded", files.length, "recordings");
 
     let n = 1;

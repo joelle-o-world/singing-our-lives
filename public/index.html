@@ -2,7 +2,7 @@
 <html lang="en-GB">
 <head>
   <meta charset="UTF-8">
-  <title>Singing Our Lives</title>
+  <title>Singing Your Life</title>
   <link rel="stylesheet" type="text/css" href="main.css" />
 
   <!-- include socket libs: -->
@@ -19,20 +19,24 @@ console.log("## Socket: ", socket)
 window.onload = function() {
   showPage(0);
 
-  let recorderIO = new SingingOurLives.RecorderInterface();
-  recorderIO.onupload = files => {
-    socket.emit('audioupload', files.map(blob => ({
+  let mediauploads = new SingingOurLives.MediaUploads();
+  mediauploads.onupload = files => {
+    console.log('onupload called');
+    socket.emit('upload', files.map(blob => ({
       buffer: blob,
       type: blob.type
     })));
+  }
 
-    let mediauploads = new SingingOurLives.MediaUploads();
+  let recorderIO = new SingingOurLives.RecorderInterface();
+  //pass blobs created by RecorderInterface to MediaUploads
+  recorderIO.onrecord = b => {
+    mediauploads.newFile(b);
   }
 
   document.getElementById("recorder_wrapper")
   .appendChild(recorderIO.makeHTML());
 
-  let mediauploads = new MediaUploads();
   document.getElementById("recorder_wrapper")
   .appendChild(mediauploads.makeHTML());
 }

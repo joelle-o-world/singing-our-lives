@@ -1,6 +1,6 @@
 class PlaybackInterface {
-  constructor(audioBlob, parentRecorder) {
-    this.parentRecorder = parentRecorder;
+  constructor(audioBlob, parentMediaUploads) {
+    this.parentMediaUploads = parentMediaUploads;
     this.audioBlob = audioBlob;
     this.enabled = true;
 
@@ -22,8 +22,8 @@ class PlaybackInterface {
     checkbox.checked = this.enabled;
     checkbox.addEventListener('change', () => {
       this.enabled = checkbox.checked;
-      if(this.parentRecorder)
-        this.parentRecorder.updateState();
+      if(this.parentMediaUploads)
+        this.parentMediaUploads.updateState();
     });
 
     // Create audio
@@ -37,8 +37,8 @@ class PlaybackInterface {
       this.enabled = false;
       if(this.div.parentElement)
         this.div.parentElement.removeChild(this.div);
-      if(this.parentRecorder)
-        this.parentRecorder.updateState();
+      if(this.parentMediaUploads)
+        this.parentMediaUploads.updateState();
     };
 
     this.div.appendChild(checkbox);
