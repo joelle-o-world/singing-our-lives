@@ -19,16 +19,25 @@ console.log("## Socket: ", socket)
 window.onload = function() {
   showPage(0);
 
-  let recorderIO = new RecorderInterface();
+  let recorderIO = new SingingOurLives.RecorderInterface();
   recorderIO.onupload = files => {
     socket.emit('audioupload', files.map(blob => ({
       buffer: blob,
       type: blob.type
     })));
+
+    let mediauploads = new SingingOurLives.MediaUploads();
   }
+
   document.getElementById("recorder_wrapper")
   .appendChild(recorderIO.makeHTML());
+
+  let mediauploads = new MediaUploads();
+  document.getElementById("recorder_wrapper")
+  .appendChild(mediauploads.makeHTML());
 }
+
+
 
 function showPage(pageIndexOrID) {
   // Hide all other pages.
