@@ -1,5 +1,5 @@
-class FileUploadInterface{
-  constructor() {
+class FileUploader{
+  constructor(file) {
     this.makeHTML();
   }
 
@@ -12,4 +12,4 @@ class FileUploadInterface{
   }
 }
 
-export {FileUploadInterface}
+export {FileUploader}

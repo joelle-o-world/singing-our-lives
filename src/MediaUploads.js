@@ -1,8 +1,6 @@
-import { FileUploadInterface } from "./FileUploadInterface";
-
-class FileSetInterface(parentSet){
+class MediaUploads(){
   constructor(){
-    this.parentSet = parentSet;
+    this.blobs = [];
     this.makeHTML();
   }
 
@@ -14,4 +12,4 @@ class FileSetInterface(parentSet){
     this.fileInput.type = 'file';
   }
 }
-export{FileSetInterface}
+export{MediaUploads}
