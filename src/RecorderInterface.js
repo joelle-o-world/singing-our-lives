@@ -1,4 +1,4 @@
-import { PlaybackInterface } from "./PlaybackInterface";
+
 
 /** Ordered list of MIME types. The recorder will choose the first type in the list that is supported by the MediaStream. */
 const mimePriorities = [
@@ -9,16 +9,13 @@ const mimePriorities = [
   'audio/webm',
 ]
 
-//October 27, 2019
-//Rewriting RecorderInterface using Mozilla MediaStream Recorder API
-//https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Using_the_MediaStream_Recording_API
-let mediaRecorder;
+
 class RecorderInterface {
   constructor() {
     this.recordings = [];
 
     this.onupload = null;
-    
+
     this.makeHTML();
     this.updateState("waiting");
   }
@@ -59,7 +56,6 @@ class RecorderInterface {
     this.recorderBody.appendChild(this.stoprecordingbutton);
     this.recorderBody.appendChild(this.playbacksDiv);
     this.recorderBody.appendChild(this.uploadBtn);
-
     return this.recorderBody;
   }
 
@@ -99,7 +95,7 @@ class RecorderInterface {
     }
 
     let nEnabledRecordings = this.recordings.filter(o => o.enabled).length
-    this.uploadBtn.innerText = "Send " 
+    this.uploadBtn.innerText = "Send "
       +  nEnabledRecordings
       + " recordings";
     this.uploadBtn.hidden = nEnabledRecordings == 0;
@@ -131,12 +127,12 @@ class RecorderInterface {
 
         // pass the stream into new MediaRecorder()
         mediaRecorder = new MediaRecorder(
-          stream, 
+          stream,
           {mimeType},
         );
 
         /** array to store audio chunks */
-        let chunks = []; 
+        let chunks = [];
 
         mediaRecorder.start(); //start recording
 
@@ -156,7 +152,7 @@ class RecorderInterface {
             throw "Something bad happened.";
 
           let blob = new Blob(chunks, {type: mime});
-          this.addPlayback(blob);
+          //emit blob to mediauploads
         }
       })
       .catch(function(err) {//execute if error
@@ -193,7 +189,7 @@ class RecorderInterface {
   upload() {
     let blobsToUpload = this.recordings.filter(o => o.enabled)
       .map(o => o.audioBlob);
-    
+
     if(this.onupload)
       this.onupload(blobsToUpload);
 
