@@ -43,32 +43,40 @@ class MediaUploads{
     return this.mediaUploadsBody;
   }
 
-  newFile(blob){
+  newFile(file){
     // add the new blob to the array
-    this.blobs.push(blob);
-    if(blob.type.slice(0,5) == "audio"){
+    this.blobs.push(file);
+
+    if(file.type.slice(0,5) == "audio"){
       console.log("it's an audio blob");
       // make a playback interface to display the blob to the user
-      let player = new PlaybackInterface(blob, this);
+      let player = new PlaybackInterface(file, this);
       this.playbacksDiv.appendChild(player.makeHTML());
+    }
 
-    } else if (blob.type.slice(0,5) == 'image'){
+    else if (file.type.slice(0,5) == 'image'){
       console.log('User uploaded image:');
-      console.log(blob);
-      let imgdisp = new ImgDisplay(blob);
-      this.playbacksDiv.appendChild(imgdisp.makeHTML());
+      console.log(file);
+      let filereader = new FileReader();
+      filereader.addEventListener('load',() => this.addImg(filereader.result));
+      filereader.readAsDataURL(file);
+    }
 
-
-    } else {
+    else {
       console.log("it ain't audio or an image!");
     }
-    // this.logBlobs();
   }
 
-  logBlobs(){
-    for(let i = 0; i < this.blobs.length; i++){
-      console.log(this.blobs[i]);
-    }
+  addImg(readerresult){
+    let imgWrap = document.createElement('div');
+    imgWrap.className = 'img_display_wrapper';
+
+    let img = document.createElement('img');
+    img.className = 'img_display_img';
+    img.src = readerresult;
+
+    imgWrap.appendChild(img);
+    this.playbacksDiv.appendChild(imgWrap);
   }
 
   fileUploaded(){
@@ -78,8 +86,6 @@ class MediaUploads{
     }
     //clear the <input> after upload:
     this.uploadFileButton.value = "";
-    console.log("New Value:");
-    console.log(this.uploadFileButton.value);
   }
 
   upload(){

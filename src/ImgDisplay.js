@@ -1,7 +1,7 @@
 class ImgDisplay{
-  constructor(imgBlob) {
+  constructor(imgUrl) {
     this.makeHTML();
-    this.imgBlob = imgBlob;
+    this.imgUrl = imgUrl;
   }
 
   makeHTML(){
@@ -10,19 +10,14 @@ class ImgDisplay{
 
     this.img = document.createElement('img');
     this.img.id = 'img_display_img';
-    console.log('Blob in ImgDisplay:');
-    console.log(this.imgBlob);
-
-    let fr = new FileReader();
-    // fr.addEventListener('load', () => this.loadImg());
-    fr.readAsDataURL(this.imgBlob);
+    console.log(this.imgUrl);
 
     this.imgWrap.appendChild(this.img);
     return this.imgWrap;
   }
 
   loadImg(){
-    
+
   }
 }
 
