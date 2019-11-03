@@ -125,7 +125,7 @@ div > img{
 /* RECORDING PAGE */
 #recording_page {
   text-align:center;
-  margin-top:10%;
+  margin-top:8%;
 }
 
 
@@ -160,6 +160,63 @@ div > img{
   color:#999999;
   background-color:#333333;
 
+}
+
+#media_uploads_body{
+  width: 300px;
+  margin-right:auto;
+  margin-left:auto;
+}
+
+#playbacksDiv{
+
+}
+
+#uploadFileButton{
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+#uploadLabel{
+  width: 100%;
+  height: 33%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right:auto;
+  margin-left:auto;
+  font-size: 20px;
+  background-color:var(--button-col1);
+  color:var(--button-col2);
+  border:1px solid var(--button-col1);
+}
+
+#uploadLabel:hover{
+  background-color:white;
+  color:var(--button-col1);
+}
+
+.img_display_wrapper{
+  width: 100%;
+  height: 150px;
+  padding: 2px;
+}
+
+.img_display_img{
+  max-height: 100%;
+}
+
+#send_button{
+  width: 100%;
+  height: 33%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right:auto;
+  margin-left:auto;
+  font-size: 30px;
 }
 /***********************************/
 

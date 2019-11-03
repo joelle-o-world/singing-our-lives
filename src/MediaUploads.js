@@ -1,5 +1,4 @@
 import {PlaybackInterface} from "./PlaybackInterface";
-import {ImgDisplay} from "./ImgDisplay";
 
 
 class MediaUploads{
@@ -21,20 +20,28 @@ class MediaUploads{
     this.heading.innerHTML = 'Uploads and Recordings:';
 
     this.playbacksDiv = document.createElement('div');
+    this.playbacksDiv.id = 'playbacksDiv';
 
     //make a new file button:
     this.uploadFileButton = document.createElement('input');
     this.uploadFileButton.type = 'file';
+    this.uploadFileButton.id = 'uploadFileButton';
+    this.uploadLabel = document.createElement('label');
+    this.uploadLabel.id = 'uploadLabel';
+    this.uploadLabel.htmlFor = 'uploadFileButton';
+    this.uploadLabel.innerHTML = 'Click here to upload an image.';
     this.uploadFileButton.addEventListener('change',() => this.fileUploaded());
 
     //make an upload button:
     this.sendButton = document.createElement('button');
     this.sendButton.innerText = 'Send files';
+    this.sendButton.id = 'send_button';
     this.sendButton.addEventListener('click', () => this.upload());
 
     //add buttons and test to main body:
     this.mediaUploadsBody.appendChild(this.heading);
     this.mediaUploadsBody.appendChild(this.uploadFileButton);
+    this.mediaUploadsBody.appendChild(this.uploadLabel);
     this.mediaUploadsBody.appendChild(this.playbacksDiv);
     this.mediaUploadsBody.appendChild(this.sendButton);
 
@@ -96,6 +103,7 @@ class MediaUploads{
     if(this.onupload){
       this.onupload(blobsToUpload);
     }
+    this.sendButton.innerText = 'Files sent'
   }
 }
 
