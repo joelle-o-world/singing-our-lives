@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pre-start": "npx webpack",
-    "start": "sudo node server/index.js"
+    "start": "node server/index.js"
   },
   "author": "Sean Norris",
   "license": "ISC",
