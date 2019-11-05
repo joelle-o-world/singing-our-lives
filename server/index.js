@@ -9,6 +9,7 @@ const fs = require('fs');
 const path = require('path')
 const express = require('express');
 const https = require('https');
+const http = require('http');
 const extName = require('ext-name');
 
 //SSL Certification:------
@@ -24,13 +25,25 @@ const {
   acceptableMediaFileExtensions,
   serv_port,
   https_port,
+  http_port,
   outputDir
 } = require("./config.js")
 
 const app = express();
 // const server = app.listen(serv_port);
+const http_server = http.createServer(app);
 const https_server = https.createServer(http_options,app);
+//--Redirect http traffic to https:---
+//https://www.namecheap.com/support/knowledgebase/article.aspx/9705/33/installing-an-ssl-certificate-on-nodejs#https_express
+app.use((req, res, next) =>{
+  if(req.protocol == 'http'){
+    res.redirect(301,`https://${req.headers.host}${req.url}`);
+  }
+  next();
+});
+//-------
 app.use(express.static('public'));
+http_server.listen(http_port);
 https_server.listen(https_port);
 
 //--Start Socket.io:---------------------------------
