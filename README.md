@@ -6,6 +6,6 @@ Install the repository with npm.
 
 Run `$ npx webpack`
 
-run `$ node server`.
+run `$ sudo node server`.
 
-Navigate to `http://localhost:3000` in your browser.
+Navigate to `https://localhost` in your browser.
