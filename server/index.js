@@ -8,21 +8,35 @@
 const fs = require('fs');
 const path = require('path')
 const express = require('express');
+const https = require('https');
 const extName = require('ext-name');
+
+//SSL Certification:------
+const cert = fs.readFileSync('./ssl/singingyourlife_co_uk.crt');
+const ca = fs.readFileSync('./ssl/singingyourlife_co_uk.ca-bundle');
+const key = fs.readFileSync('./ssl/singingyourlife.co.uk.key');
+const http_options = {cert, ca, key};
+//-------------------------
+
+
 
 const {
   acceptableMediaFileExtensions,
   serv_port,
+  https_port,
   outputDir
 } = require("./config.js")
 
 const app = express();
-const  server = app.listen(serv_port);
+// const server = app.listen(serv_port);
+const https_server = https.createServer(http_options,app);
 app.use(express.static('public'));
+https_server.listen(https_port);
 
 //--Start Socket.io:---------------------------------
 const socket = require('socket.io');
-const server_io = socket(server);
+// const server_io = socket(server);
+const server_io = socket(https_server);
 server_io.sockets.on('connection', newConnection);
 
 function newConnection(socket){
