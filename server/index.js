@@ -66,15 +66,15 @@ function newConnection(socket){
     let json = JSON.stringify(data,null,2);
     //make a folder to hold the json and, later, the wav file:
     if(!fs.existsSync(sessionDirectory))
-      fs.mkdirSync(sessionDirectory);
+    fs.mkdirSync(sessionDirectory);
 
     //write the json file:
     fs.writeFileSync(filePath, json);
     console.log("Form saved as " + filePath + ".");
   });
 
-  socket.on('audioupload', files => {
-    console.log("User", socket.id, "uploaded", files.length, "recordings");
+  socket.on('upload', files => {
+    console.log("User", socket.id, "uploaded", files.length, "files");
 
     let n = 1;
     for(let {type, buffer} of files) {
@@ -92,15 +92,16 @@ function newConnection(socket){
 
         console.log("Saving", filepath);
         if(!fs.existsSync(sessionDirectory))
-          fs.mkdirSync(sessionDirectory);
+        fs.mkdirSync(sessionDirectory);
         fs.writeFile(filepath, buffer, err => {
           if(err)
-            console.log("Error saving audio file:", filepath);
+          console.log("Error saving audio file:", filepath);
           else
-            console.log("Successfully saved", filepath);
+          console.log("Successfully saved", filepath);
         })
-      } else
+      } else{
         console.log("Unsupported MIME:", MIME, '('+ext+')');
+      }
     }
   })
 

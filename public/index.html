@@ -2,7 +2,7 @@
 <html lang="en-GB">
 <head>
   <meta charset="UTF-8">
-  <title>Singing Our Lives</title>
+  <title>Singing Your Life</title>
   <link rel="stylesheet" type="text/css" href="main.css" />
 
   <!-- include socket libs: -->
@@ -19,16 +19,29 @@ console.log("## Socket: ", socket)
 window.onload = function() {
   showPage(0);
 
-  let recorderIO = new RecorderInterface();
-  recorderIO.onupload = files => {
-    socket.emit('audioupload', files.map(blob => ({
+  let mediauploads = new SingingOurLives.MediaUploads();
+  mediauploads.onupload = files => {
+    console.log('onupload called');
+    socket.emit('upload', files.map(blob => ({
       buffer: blob,
       type: blob.type
     })));
   }
+
+  let recorderIO = new SingingOurLives.RecorderInterface();
+  //pass blobs created by RecorderInterface to MediaUploads
+  recorderIO.onrecord = b => {
+    mediauploads.newFile(b);
+  }
+
   document.getElementById("recorder_wrapper")
   .appendChild(recorderIO.makeHTML());
+
+  document.getElementById("recorder_wrapper")
+  .appendChild(mediauploads.makeHTML());
 }
+
+
 
 function showPage(pageIndexOrID) {
   // Hide all other pages.
@@ -152,11 +165,7 @@ onclick = "showPage('recording_page')"
   </div>
   <div id="form_wrap">
     <form id="thank_you_form">
-      <strong>Email:</strong>
       <input name="email" placeholder="email (optional)" />
-      <br>
-      <strong>File upload:</strong>
-      <input type="file" name="upload">
       <br>
       <textarea name="comment" placeholder="Anything else to add?"></textarea>
       <br>
@@ -165,7 +174,7 @@ onclick = "showPage('recording_page')"
       <br>
       <button onclick="thankYouForm(event)">Submit</button>
     </form>
-    <div id=thanks_again hidden>Thanks for your feedback!</div>
+    <div id=thanks_again hidden>Thank you for your contributions!</div>
   </div>
 
 </span>

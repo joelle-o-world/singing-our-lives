@@ -5,7 +5,7 @@ module.exports = {
   mode: 'development',
   watch: false, // otherwise it will pause npm build indefinitely.
   // If you need to watch use the -w command line flag.
- 
+
   resolve: {
     extensions: ['.js' ]
   },
@@ -13,8 +13,8 @@ module.exports = {
   output: {
     filename: 'sol.bundle.js',
     path: path.resolve(__dirname, 'public'),
-    library: 'RecorderInterface',
+    library: 'SingingOurLives',
     libraryTarget: 'window',
-    libraryExport: 'RecorderInterface'
+    libraryExport: 'default'
   }
 };
