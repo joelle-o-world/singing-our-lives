@@ -12,6 +12,8 @@ const https = require('https');
 const http = require('http');
 const extName = require('ext-name');
 
+const {saveWav} = require('./saveWav.js')
+
 //SSL Certification:------
 const cert = fs.readFileSync('./ssl/singingyourlife_co_uk.crt');
 const ca = fs.readFileSync('./ssl/singingyourlife_co_uk.ca-bundle');
@@ -64,9 +66,9 @@ function newConnection(socket){
 
     let filePath = path.resolve(sessionDirectory, "feedback.json");
     let json = JSON.stringify(data,null,2);
-    //make a folder to hold the json and, later, the wav file:
+    // make a folder to hold the json
     if(!fs.existsSync(sessionDirectory))
-    fs.mkdirSync(sessionDirectory);
+      fs.mkdirSync(sessionDirectory);
 
     //write the json file:
     fs.writeFileSync(filePath, json);
@@ -80,27 +82,40 @@ function newConnection(socket){
     for(let {type, buffer} of files) {
       // Destructure media type string.
       const [MIME, codec] = type.split(";");
+      const [mediaKind] = MIME.split('/');
 
-      // Find appropriate file extension based on MIME
-      const [{ext}] = extName.mime(MIME);
+      let filename = (sessionAudioFiles.length+1) + '.wav';
+      let filepath = path.resolve(sessionDirectory, filename);
+      sessionAudioFiles.push(filepath);
 
-      // If found a file extension and its in the list
-      if(ext && acceptableMediaFileExtensions.includes(ext)) {
-        let filename = (sessionAudioFiles.length+1) + '.' + ext;
-        let filepath = path.resolve(sessionDirectory, filename);
-        sessionAudioFiles.push(filepath);
+      console.log("## MIME: ", MIME)
 
-        console.log("Saving", filepath);
-        if(!fs.existsSync(sessionDirectory))
+      // Create the session directory if it doesn't exist.
+      if(!fs.existsSync(sessionDirectory))
         fs.mkdirSync(sessionDirectory);
-        fs.writeFile(filepath, buffer, err => {
-          if(err)
-          console.log("Error saving audio file:", filepath);
-          else
-          console.log("Successfully saved", filepath);
-        })
-      } else{
-        console.log("Unsupported MIME:", MIME, '('+ext+')');
+
+      if(mediaKind == 'audio')
+        saveWav(buffer, type, filepath);
+      else {
+        // Find appropriate file extension based on MIME
+        const [{ext}] = extName.mime(MIME);
+
+        // If found a file extension and its in the list
+        if(ext && acceptableMediaFileExtensions.includes(ext)) {
+          let filename = (sessionAudioFiles.length+1) + '.' + ext;
+          let filepath = path.resolve(sessionDirectory, filename);
+          sessionAudioFiles.push(filepath);
+
+          console.log("Saving", filepath);
+          fs.writeFile(filepath, buffer, err => {
+            if(err)
+            console.log("Error saving audio file:", filepath);
+            else
+            console.log("Successfully saved", filepath);
+          })
+        } else{
+          console.log("Unsupported MIME:", MIME, '('+ext+')');
+        }
       }
     }
   })
