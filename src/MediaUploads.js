@@ -30,14 +30,15 @@ class MediaUploads{
     this.uploadFileButton.id = 'uploadFileButton';
     this.uploadLabel = document.createElement('label');
     this.uploadLabel.id = 'uploadLabel';
+    this.uploadLabel.className = 'recorderButton';
     this.uploadLabel.htmlFor = 'uploadFileButton';
-    this.uploadLabel.innerHTML = 'Click here to upload an image.';
+    this.uploadLabel.innerHTML = 'Upload an image';
     this.uploadFileButton.addEventListener('change',() => this.fileUploaded());
 
     //make an upload button:
     this.sendButton = document.createElement('button');
     this.sendButton.innerText = 'Send files';
-    this.sendButton.id = 'send_button';
+    this.sendButton.className = 'recorderButton';
     this.sendButton.addEventListener('click', () => this.upload());
 
     //add buttons and test to main body:
