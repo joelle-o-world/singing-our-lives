@@ -2,8 +2,10 @@ import {PlaybackInterface} from "./PlaybackInterface";
 
 
 class MediaUploads{
-  constructor(){
+  constructor({includeSendButton=false}={}){
     this.blobs = [];
+
+    this.includeSendButton = includeSendButton;
 
     this.makeHTML();
 
@@ -43,7 +45,8 @@ class MediaUploads{
     this.mediaUploadsBody.appendChild(this.uploadFileButton);
     this.mediaUploadsBody.appendChild(this.uploadLabel);
     this.mediaUploadsBody.appendChild(this.playbacksDiv);
-    this.mediaUploadsBody.appendChild(this.sendButton);
+    if(this.includeSendButton)
+      this.mediaUploadsBody.appendChild(this.sendButton);
 
 
     //return the main body:
@@ -103,7 +106,7 @@ class MediaUploads{
     if(this.onupload){
       this.onupload(blobsToUpload);
     }
-    this.sendButton.innerText = 'Files sent'
+    this.sendButton.innerText = 'Files sent';
   }
 }
 
