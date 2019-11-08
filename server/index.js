@@ -82,15 +82,41 @@ function newConnection(socket){
     for(let {type, buffer} of files) {
       // Destructure media type string.
       const [MIME, codec] = type.split(";");
+      const [mediaKind] = MIME.split('/');
 
       let filename = (sessionAudioFiles.length+1) + '.wav';
       let filepath = path.resolve(sessionDirectory, filename);
       sessionAudioFiles.push(filepath);
 
+      console.log("## MIME: ", MIME)
+
+      // Create the session directory if it doesn't exist.
       if(!fs.existsSync(sessionDirectory))
         fs.mkdirSync(sessionDirectory);
 
-      saveWav(buffer, type, filepath);
+      if(mediaKind == 'audio')
+        saveWav(buffer, type, filepath);
+      else {
+        // Find appropriate file extension based on MIME
+        const [{ext}] = extName.mime(MIME);
+
+        // If found a file extension and its in the list
+        if(ext && acceptableMediaFileExtensions.includes(ext)) {
+          let filename = (sessionAudioFiles.length+1) + '.' + ext;
+          let filepath = path.resolve(sessionDirectory, filename);
+          sessionAudioFiles.push(filepath);
+
+          console.log("Saving", filepath);
+          fs.writeFile(filepath, buffer, err => {
+            if(err)
+            console.log("Error saving audio file:", filepath);
+            else
+            console.log("Successfully saved", filepath);
+          })
+        } else{
+          console.log("Unsupported MIME:", MIME, '('+ext+')');
+        }
+      }
     }
   })
 
