@@ -81,12 +81,10 @@ function thankYouForm(e) {
 
 <body>
   <span id="pages">
-
     <div id="welcome_page">
-      <!-- PAGE 1 -->
       <div id="welcome_header">
         <div class="row">
-            <div class="column">
+          <div class="column">
             <img src="assets/imgs/banner1.png">
           </div>
         </div>
@@ -131,15 +129,14 @@ function thankYouForm(e) {
         </div>
       </div>
     </div>
-<!--
     <div id="recording_page">
-       PAGE 2 
       <span id="recorder_wrapper"></span>
 
       <button class=nextbtn onclick="showPage('thank_you_page')">Continue</button>
+      <br>
+      <button class=nextbtn onclick="showPage('welcome_page')">Back</button>
     </div>
--->
-      <!--
+
     <div id="thank_you_page">
       <div id="thank_you_page_text_wrapper">
         <div id="thank_you_titles">
@@ -161,13 +158,13 @@ function thankYouForm(e) {
           <p>Please tick the following box to indicate that you allow Together Productions to use the contributions you have provided:</p>
           <input type="checkbox" name="consent"/>
           <br>
-          <button onclick="thankYouForm(event)">Submit</button>
+          <button class=nextbtn onclick="thankYouForm(event)">Submit</button>
         </form>
+        <button class=nextbtn onclick="showPage('recording_page')">Back</button>
         <div id=thanks_again hidden>Thank you for your contributions!</div>
       </div>
-      </div>
-      -->
-    </span>
-  </body>
+    </div>
+  </span>
+</body>
 
-  </html>
+</html>
