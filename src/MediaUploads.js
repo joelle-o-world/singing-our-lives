@@ -19,7 +19,7 @@ class MediaUploads{
 
     this.heading = document.createElement('h1');
     this.heading.id = 'media_heading';
-    this.heading.innerHTML = 'Uploads and Recordings:';
+    this.heading.innerHTML = 'Upload an image of youself (optional):';
 
     this.playbacksDiv = document.createElement('div');
     this.playbacksDiv.id = 'playbacksDiv';

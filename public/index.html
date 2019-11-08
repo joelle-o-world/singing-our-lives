@@ -7,7 +7,12 @@
 
   <!-- include socket libs: -->
   <script src="/socket.io/socket.io.js"></script>
-
+  <!-- include p5 libs: -->
+  <script src="libraries/p5.js"></script>
+	<script src="libraries/p5.dom.js"></script>
+	<script src="libraries/p5.sound.js"></script>
+	<script src="sketch.js"></script>
+  
   <script type="text/javascript" src="sol.bundle.js"></script>
 </head>
 
@@ -57,12 +62,12 @@ function showPage(pageIndexOrID) {
 function finishedRecording() {
   // Gather up files.
   let blobs = mediauploads.blobs;
-  
+
   console.log('uploading:', blobs)
   socket.emit('upload', blobs.map(blob => ({
-      buffer: blob,
-      type: blob.type
-    })));
+    buffer: blob,
+    type: blob.type
+  })));
 
   // Finally turn to the thank you page.
   showPage('thank_you_page');
@@ -136,16 +141,19 @@ function thankYouForm(e) {
           </div>
         </div>
       </div>
-</div>
+    </div>
 
-<div id="recording_page">
-  <!-- PAGE 2 -->
-  <span id="recorder_wrapper"></span>
+    <div id="recording_page">
+      <!-- PAGE 2 -->
+      <div id="p5canvas">
+      </div>
+      <span id="recorder_wrapper">
+      </span>
 
-  <button class=nextbtn onclick="finishedRecording()">Send & Continue</button>
-  <br>
+      <button class=nextbtn onclick="finishedRecording()">Send & Continue</button>
+      <br>
       <button class=nextbtn onclick="showPage('welcome_page')">Back</button>
-</div>
+    </div>
 
     <div id="thank_you_page">
       <div id="thank_you_page_text_wrapper">
@@ -156,7 +164,7 @@ function thankYouForm(e) {
         <div id="thank_you_body">
           <p>Your creative contributions are now in the big pool of music, words and art that our team are going to turn into new songs.</p>
           <p>We would love to stay in touch with you so we can let you know what’s happening with the project and invite you to hear them when they are complete.</p>
-          <p>Please complete your details here to join our mailing list. If you’d like to upload a headshot of yourself that would be great too!</p>
+          <p>Please complete your details here to join our mailing list.</p>
         </div>
       </div>
       <div id="form_wrap">
