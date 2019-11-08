@@ -1,5 +1,4 @@
 const {PassThrough} = require('stream');
-const {createWriteStream} = require('fs')
 
 const ffmpeg = require('fluent-ffmpeg')
 
@@ -10,8 +9,6 @@ function saveWav(buffer, type, savePath) {
 
   const stream = new PassThrough;
   stream.end(buffer);
-
-  //const writeStream = createWriteStream(savePath)
 
   ffmpeg(stream) 
     .save(savePath)
