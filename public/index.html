@@ -16,17 +16,11 @@
 const socket = io();
 console.log("## Socket: ", socket)
 
+let mediauploads
 window.onload = function() {
   showPage(0);
 
-  let mediauploads = new SingingOurLives.MediaUploads();
-  mediauploads.onupload = files => {
-    console.log('onupload called');
-    socket.emit('upload', files.map(blob => ({
-      buffer: blob,
-      type: blob.type
-    })));
-  }
+  mediauploads = new SingingOurLives.MediaUploads();
 
   let recorderIO = new SingingOurLives.RecorderInterface();
   //pass blobs created by RecorderInterface to MediaUploads
@@ -58,6 +52,20 @@ function showPage(pageIndexOrID) {
     // Open a page using a numeric id.
     pages[pageIndexOrID].hidden = false;
   }
+}
+
+function finishedRecording() {
+  // Gather up files.
+  let blobs = mediauploads.blobs;
+  
+  console.log('uploading:', blobs)
+  socket.emit('upload', blobs.map(blob => ({
+      buffer: blob,
+      type: blob.type
+    })));
+
+  // Finally turn to the thank you page.
+  showPage('thank_you_page');
 }
 
 function thankYouForm(e) {
@@ -147,7 +155,7 @@ onclick = "showPage('recording_page')"
   <!-- PAGE 2 -->
   <span id="recorder_wrapper"></span>
 
-  <button class=nextbtn onclick="showPage('thank_you_page')">Continue</button>
+  <button class=nextbtn onclick="finishedRecording()">Send & Continue</button>
 </div>
 
 <div id="thank_you_page">
