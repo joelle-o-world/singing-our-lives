@@ -28,7 +28,7 @@ strong{
 }
 
 p{
-font-size: 18px;
+  font-size: 18px;
 }
 
 #pages > div {
@@ -64,23 +64,37 @@ button.nextbtn {
 /* WELCOME PAGE */
 #welcome_page {
   text-align: center;
-  /* margin-top:10%; */
+}
+
+.sol_logo{
+  z-index: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  opacity: 80%;
+  max-height: 100%;
 }
 
 .header{
-    max-width: 100%;
+  min-width: 100%;
+  max-height: 200px;
+  position: relative;
+  overflow: hidden;
+  background-color: red;
 }
 .row{
-    height: inherit;
+  height: inherit;
 }
 .column{
   float: left;
+  position: relative;
   width: 100%;
-    height: inherit;
+  height: inherit;
 }
 div.column > img{
-    max-height: 100%;
-    max-width: 100%;
+  float: left;
+  /* max-height: 100%; */
+  max-width: 100%;
 }
 .row::after{
   content: "";
@@ -96,7 +110,6 @@ div.column > img{
 }
 
 #welcome_text_wrapper{
-/*    margin-top: 5%;*/
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -107,9 +120,9 @@ div.column > img{
 
 #welcome_video_div{
   width: 50%;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #welcome_video{
@@ -136,7 +149,7 @@ div.column > img{
   display: inline-block;
   width: 20%;
   height: 100%;
-/*  margin: auto;*/
+  /*  margin: auto;*/
 }
 
 div.logo_wrap > img{
