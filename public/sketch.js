@@ -63,7 +63,7 @@ class AudioTape{
       this.audio_values.push(0.0);
       this.previous_values.push(0.0);
     }
-    this.glob_corners = [createVector(0,height*.7),createVector(width,height*.7)];
+    this.glob_corners = [createVector(0,height*.4),createVector(width,height*.4)];
     this.findPoints(this.glob_corners);
 
 

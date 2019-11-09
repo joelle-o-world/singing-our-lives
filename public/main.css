@@ -169,8 +169,12 @@ div.logo_wrap > img{
   margin-left:auto;
 }
 
+.provocation_text{
+  text-align: left;
+}
+
 #lyrics_form{
-  width: 300px;
+  width: 350px;
   margin-right:auto;
   margin-left:auto;
   text-align: center;
@@ -182,7 +186,7 @@ div.logo_wrap > img{
 }
 
 .recorder_body{
-  width:300px;
+  width:350px;
   margin-right:auto;
   margin-left:auto;
 }
@@ -214,7 +218,7 @@ div.logo_wrap > img{
 }
 
 #media_uploads_body{
-  width: 300px;
+  width: 350px;
   margin-right:auto;
   margin-left:auto;
 }
