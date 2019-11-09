@@ -165,6 +165,13 @@ function thankYouForm(e) {
     </div>
 
     <div id="thank_you_page">
+      <div class="header">
+        <div class="row">
+          <div class="column">
+            <img src="assets/imgs/banner2.png">
+          </div>
+        </div>
+      </div>
       <div id="thank_you_page_text_wrapper">
         <div id="thank_you_titles">
           <h2>Thank you so much for being part of the Singing Our Lives Songwriting Project:</h2>
@@ -175,20 +182,20 @@ function thankYouForm(e) {
           <p>We would love to stay in touch with you so we can let you know what’s happening with the project and invite you to hear them when they are complete.</p>
           <p>Please complete your details here to join our mailing list.</p>
         </div>
-      </div>
-      <div id="form_wrap">
-        <form id="thank_you_form">
-          <input name="email" placeholder="email (optional)" />
-          <br>
-          <textarea name="comment" placeholder="Anything else to add?"></textarea>
-          <br>
-          <p>Please tick the following box to indicate that you allow Together Productions to use the contributions you have provided:</p>
-          <input type="checkbox" name="consent"/>
-          <br>
-          <button class=nextbtn onclick="thankYouForm(event)">Submit</button>
-        </form>
-        <button class=nextbtn onclick="showPage('recording_page')">Back</button>
-        <div id=thanks_again hidden>Thank you for your contributions!</div>
+        <div id="form_wrap">
+          <form id="thank_you_form">
+            <input name="email" placeholder="email (optional)" />
+            <br>
+            <textarea name="comment" placeholder="Anything else to add?"></textarea>
+            <br>
+            <p>Please tick the following box to indicate that you allow Together Productions to use the contributions you have provided:</p>
+            <input type="checkbox" name="consent"/>
+            <br>
+            <button class=nextbtn onclick="thankYouForm(event)">Submit</button>
+          </form>
+          <button class=nextbtn onclick="showPage('recording_page')">Back</button>
+          <div id=thanks_again hidden>Thank you for your contributions!</div>
+        </div>
       </div>
     </div>
   </span>

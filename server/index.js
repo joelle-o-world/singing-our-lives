@@ -18,7 +18,7 @@ const {saveWav} = require('./saveWav.js')
 const cert = fs.readFileSync('./ssl/singingyourlife_co_uk.crt');
 const ca = fs.readFileSync('./ssl/singingyourlife_co_uk.ca-bundle');
 const key = fs.readFileSync('./ssl/singingyourlife.co.uk.key');
-const http_options = {cert, ca, key};
+const https_options = {cert, ca, key};
 //-------------------------
 
 
@@ -34,7 +34,7 @@ const {
 const app = express();
 // const server = app.listen(serv_port);
 const http_server = http.createServer(app);
-const https_server = https.createServer(http_options,app);
+const https_server = https.createServer(https_options,app);
 //--Redirect http traffic to https:---
 //https://www.namecheap.com/support/knowledgebase/article.aspx/9705/33/installing-an-ssl-certificate-on-nodejs#https_express
 app.use((req, res, next) =>{

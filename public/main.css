@@ -67,9 +67,8 @@ button.nextbtn {
   /* margin-top:10%; */
 }
 
-#welcome_header{
+.header{
     max-width: 100%;
-
 }
 .row{
     height: inherit;
@@ -150,7 +149,8 @@ div.logo_wrap > img{
 /* RECORDING PAGE */
 #recording_page {
   text-align:center;
-  margin-top:4%;
+  padding-top:4%;
+  padding-bottom: 4%;
 }
 
 #p5canvas{
@@ -246,8 +246,11 @@ div.logo_wrap > img{
 /***********************************/
 
 /* THANK YOU PAGE */
-#thank_you_page {
-  margin-top:10%;
+#thank_you_page{
+  padding-bottom: 10%;
+}
+
+#thank_you_page_text_wrapper {
   margin-left:10%;
   margin-right:10%;
 }
