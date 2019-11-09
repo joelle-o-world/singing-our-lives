@@ -150,7 +150,7 @@ div.logo_wrap > img{
 /* RECORDING PAGE */
 #recording_page {
   text-align:center;
-  margin-top:8%;
+  margin-top:4%;
 }
 
 #p5canvas{
@@ -169,6 +169,17 @@ div.logo_wrap > img{
   margin-left:auto;
 }
 
+#lyrics_form{
+  width: 300px;
+  margin-right:auto;
+  margin-left:auto;
+  text-align: center;
+}
+
+#lyrics_textarea{
+  min-width: 100%;
+  height:40px;
+}
 
 .recorder_body{
   width:300px;
@@ -206,10 +217,6 @@ div.logo_wrap > img{
   width: 300px;
   margin-right:auto;
   margin-left:auto;
-}
-
-#playbacksDiv{
-
 }
 
 #uploadFileButton{
@@ -257,8 +264,5 @@ div.logo_wrap > img{
 input{
   width: 30%;
   margin:5px 0;
-}
-textarea{
-  wo
 }
 /***********************************/

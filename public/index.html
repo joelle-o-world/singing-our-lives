@@ -12,7 +12,7 @@
 	<script src="libraries/p5.dom.js"></script>
 	<script src="libraries/p5.sound.js"></script>
 	<script src="sketch.js"></script>
-  
+
   <script type="text/javascript" src="sol.bundle.js"></script>
 </head>
 
@@ -78,9 +78,11 @@ function thankYouForm(e) {
   e.preventDefault();
 
   const form = document.getElementById('thank_you_form');
+  const lyrics = document.getElementById('lyrics_textarea');
 
   const feedback = {
     email: form.elements.namedItem("email").value,
+    lyrics: lyrics.value,
     comment: form.elements.namedItem("comment").value,
     consent: form.elements.namedItem("consent").value
   }
@@ -149,6 +151,10 @@ function thankYouForm(e) {
       </div>
       <span id="recorder_wrapper">
       </span>
+      <div id="lyrics_form">
+        <h1>Submit lyrics:</h1>
+        <textarea name="lyrics" id="lyrics_textarea"></textarea>
+      </div>
 
       <button class=nextbtn onclick="finishedRecording()">Send & Continue</button>
       <br>

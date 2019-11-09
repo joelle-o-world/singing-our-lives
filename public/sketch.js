@@ -14,9 +14,9 @@ function setup(){
   canvas = createCanvas(windowWidth,windowHeight);
   canvas.parent('p5canvas');
 
-  audio_segs = 20;
+  audio_segs = 21;
 
-  audiotape = new AudioTape(color("#CC1454"),2,audio_segs);
+  audiotape = new AudioTape(color("#652a80"),2,audio_segs);
 
   buff_size = audio_segs;
   for(let i = 0; i < buff_size; i++){
@@ -63,7 +63,7 @@ class AudioTape{
       this.audio_values.push(0.0);
       this.previous_values.push(0.0);
     }
-    this.glob_corners = [createVector(0,height/2),createVector(width,height/2)];
+    this.glob_corners = [createVector(0,height*.7),createVector(width,height*.7)];
     this.findPoints(this.glob_corners);
 
 
