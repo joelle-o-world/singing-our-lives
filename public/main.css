@@ -80,15 +80,15 @@ button.nextbtn {
   max-height: 200px;
   position: relative;
   overflow: hidden;
-  background-color: red;
 }
 .row{
   height: inherit;
+  min-width: 100%;
 }
 .column{
   float: left;
   position: relative;
-  width: 100%;
+  min-width: 100%;
   height: inherit;
 }
 div.column > img{
