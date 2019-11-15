@@ -4,7 +4,7 @@ module.exports = {
     script: "npm",
     args: "start",
     interpreter: 'none',
-  },
+  }]
   /*{
     name: "git-watcher",
     script: "watchGithub.sh",
