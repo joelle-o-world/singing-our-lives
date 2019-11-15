@@ -27,10 +27,6 @@ strong{
   color:#652a80;
 }
 
-p{
-  font-size: 18px;
-}
-
 #pages > div {
   position: fixed;
   top:0px;
@@ -55,46 +51,24 @@ button.nextbtn {
   font-weight: 100;
   font-size: 30px;
   margin-top: 20px;
-  padding-left:5px;
-  padding-right:5px;
+  padding-left:60px;
+  padding-right:60px;
   height:35px;
-  min-width: 300px;
 }
 
 /* WELCOME PAGE */
 #welcome_page {
   text-align: center;
+  /* margin-top:10%; */
 }
 
-.sol_logo{
-  z-index: 1;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  opacity: 80%;
-  max-height: 100%;
-}
-
-.header{
-  min-width: 100%;
-  max-height: 200px;
-  position: relative;
-  overflow: hidden;
-}
-.row{
-  height: inherit;
-  min-width: 100%;
+#welcome_header{
+  width: 100%;
+  height: 100px;
 }
 .column{
   float: left;
-  position: relative;
-  min-width: 100%;
-  height: inherit;
-}
-div.column > img{
-  float: left;
-  /* max-height: 100%; */
-  max-width: 100%;
+  width: 25%;
 }
 .row::after{
   content: "";
@@ -104,7 +78,7 @@ div.column > img{
 
 #welcome_page > h1 {
   font-family: Arial;
-  font-weight: 300;
+  font-weight: 200;
   font-size:60px;
   margin-bottom: 100px;
 }
@@ -118,41 +92,30 @@ div.column > img{
   text-align: left;
 }
 
-#welcome_video_div{
-  width: 50%;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#welcome_video{
-  max-width: 100%;
-}
-
 #welcome_footer{
   width: 100%;
   height: 100px;
-  text-align: center;
+  text-align: left;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .logo_set_wrap{
   height: 100%;
-  width: 50%;
-  display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
+  float: left;
+  width: 60%;
   margin-top: 5%;
-  text-align: center;
 }
 
 .logo_wrap{
+  float: left;
   display: inline-block;
   width: 20%;
   height: 100%;
-  /*  margin: auto;*/
+  margin: auto;
 }
 
-div.logo_wrap > img{
+div > img{
   max-height: 100%;
   max-width: 100%;
   margin: auto;
@@ -162,13 +125,9 @@ div.logo_wrap > img{
 /* RECORDING PAGE */
 #recording_page {
   text-align:center;
-  padding-bottom: 4%;
+  margin-top:8%;
 }
 
-#p5canvas{
-  z-index: -1;
-  position: absolute;
-}
 
 
 #recorder_wrapper:empty {
@@ -181,24 +140,9 @@ div.logo_wrap > img{
   margin-left:auto;
 }
 
-.provocation_text{
-  text-align: left;
-}
-
-#lyrics_form{
-  width: 350px;
-  margin-right:auto;
-  margin-left:auto;
-  text-align: center;
-}
-
-#lyrics_textarea{
-  min-width: 100%;
-  height:40px;
-}
 
 .recorder_body{
-  width:350px;
+  width:300px;
   margin-right:auto;
   margin-left:auto;
 }
@@ -218,21 +162,14 @@ div.logo_wrap > img{
 
 }
 
-#uploadLabel{
-  background-color:var(--button-col1);
-  color:var(--button-col2);
-  border:1px solid var(--button-col1);
-  padding: 0px 35px 0px 35px;
-}
-#uploadLabel:hover{
-  background-color:white;
-  color:var(--button-col1);
-}
-
 #media_uploads_body{
-  width: 350px;
+  width: 300px;
   margin-right:auto;
   margin-left:auto;
+}
+
+#playbacksDiv{
+
 }
 
 #uploadFileButton{
@@ -244,7 +181,23 @@ div.logo_wrap > img{
   z-index: -1;
 }
 
+#uploadLabel{
+  width: 100%;
+  height: 33%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right:auto;
+  margin-left:auto;
+  font-size: 20px;
+  background-color:var(--button-col1);
+  color:var(--button-col2);
+  border:1px solid var(--button-col1);
+}
 
+#uploadLabel:hover{
+  background-color:white;
+  color:var(--button-col1);
+}
 
 .img_display_wrapper{
   width: 100%;
@@ -255,14 +208,21 @@ div.logo_wrap > img{
 .img_display_img{
   max-height: 100%;
 }
+
+#send_button{
+  width: 100%;
+  height: 33%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right:auto;
+  margin-left:auto;
+  font-size: 30px;
+}
 /***********************************/
 
 /* THANK YOU PAGE */
-#thank_you_page{
-  padding-bottom: 10%;
-}
-
-#thank_you_page_text_wrapper {
+#thank_you_page {
+  margin-top:10%;
   margin-left:10%;
   margin-right:10%;
 }
@@ -283,5 +243,8 @@ div.logo_wrap > img{
 input{
   width: 30%;
   margin:5px 0;
+}
+textarea{
+  wo
 }
 /***********************************/

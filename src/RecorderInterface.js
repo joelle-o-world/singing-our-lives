@@ -41,14 +41,6 @@ class RecorderInterface {
     this.heading.id = 'recorder_heading';
     this.heading.innerHTML = 'Make a new recording:';
 
-    //create a provocation:
-    this.provo_div = document.createElement('div');
-    this.provo_div.className = 'provocation_text';
-
-    this.provo_text = document.createElement('p');
-    this.provo_text.innerHTML = "We're interested in receiving any musical ideas to help influence or write our songs.  Perhaps there's a favourite folk song you could share or you just fancy improvising a melody or beat.  Press record and perform, sing, or playback a track.";
-    this.provo_div.appendChild(this.provo_text);
-
     // create a stop recording button
     this.stoprecordingbutton = document.createElement("button");
     this.stoprecordingbutton.className = "recorderButton";
@@ -63,7 +55,6 @@ class RecorderInterface {
 
     //append all elements to the recorderBody:
     this.recorderBody.appendChild(this.heading);
-    this.recorderBody.appendChild(this.provo_div);
     this.recorderBody.appendChild(this.recordbutton);
     this.recorderBody.appendChild(this.stoprecordingbutton);
     this.recorderBody.appendChild(this.uploadBtn);

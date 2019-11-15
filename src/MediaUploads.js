@@ -19,7 +19,7 @@ class MediaUploads{
 
     this.heading = document.createElement('h1');
     this.heading.id = 'media_heading';
-    this.heading.innerHTML = 'Upload an image of yourself (optional):';
+    this.heading.innerHTML = 'Uploads and Recordings:';
 
     this.playbacksDiv = document.createElement('div');
     this.playbacksDiv.id = 'playbacksDiv';
@@ -30,15 +30,14 @@ class MediaUploads{
     this.uploadFileButton.id = 'uploadFileButton';
     this.uploadLabel = document.createElement('label');
     this.uploadLabel.id = 'uploadLabel';
-    this.uploadLabel.className = 'recorderButton';
     this.uploadLabel.htmlFor = 'uploadFileButton';
-    this.uploadLabel.innerHTML = 'Upload an image';
+    this.uploadLabel.innerHTML = 'Click here to upload an image.';
     this.uploadFileButton.addEventListener('change',() => this.fileUploaded());
 
     //make an upload button:
     this.sendButton = document.createElement('button');
     this.sendButton.innerText = 'Send files';
-    this.sendButton.className = 'recorderButton';
+    this.sendButton.id = 'send_button';
     this.sendButton.addEventListener('click', () => this.upload());
 
     //add buttons and test to main body:
