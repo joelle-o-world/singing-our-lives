@@ -94,7 +94,7 @@ button.nextbtn {
 div.column > img{
   float: left;
   /* max-height: 100%; */
-  max-width: 100%;
+  width: 100%;
 }
 .row::after{
   content: "";
