@@ -17,6 +17,6 @@ module.exports = {
     script: "watchGithub.sh",
     watch_delay: 60000,
     watch: true,
-    ignore_watch : ["node_modules", "formfills"]
+    ignore_watch : ["node_modules", "formfills", 'package-lock.json']
   }]
 }
