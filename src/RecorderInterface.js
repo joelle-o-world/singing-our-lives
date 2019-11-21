@@ -150,13 +150,13 @@ class RecorderInterface {
 
 
         //event handler, executed whenever new data is available from the MediaRecorder
-        mediaRecorder.ondataavailable = e => {
+        mediaRecorder.addEventListener('dataavailable', e => {
           console.log('## data available', e.data.type);
           chunks.push(e.data);
-        }
+        })
 
         //event handler, executed when MediaRecorder.stop() is called:
-        mediaRecorder.onstop = e => {
+        mediaRecorder.addEventListener('stop', e => {
           console.log('## mediaRecorder.onstop event ocurred.');
           let mime = chunks[0].type;
           if(chunks.some(chunk => chunk.type != mime))
@@ -167,7 +167,7 @@ class RecorderInterface {
             this.onrecord(blob);
           }
 
-        }
+        })
       })
       .catch(function(err) {//execute if error
         console.error('The following getUserMedia error occured: ' + err);
