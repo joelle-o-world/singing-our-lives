@@ -2,3 +2,4 @@ node_modules
 formfills
 public/sol.bundle.js
 /well-known
+public/polyfill.bundle.js

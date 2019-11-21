@@ -8,12 +8,21 @@
   <!-- include socket libs: -->
   <script src="/socket.io/socket.io.js"></script>
   <!-- include p5 libs: -->
-  <script src="libraries/p5.js"></script>
+  <!--<script src="libraries/p5.js"></script>
   <script src="libraries/p5.dom.js"></script>
-  <script src="libraries/p5.sound.js"></script>
+  <script defer src="libraries/p5.sound.js"></script>
   <script src="sketch.js"></script>
+-->
 
-  <script type="text/javascript" src="sol.bundle.js"></script>
+  <script>
+      if (!window.MediaRecorder) {
+        document.write(
+          decodeURI('%3Cscript defer src="/polyfill.bundle.js">%3C/script>')
+        )
+      }
+    </script>
+
+  <script defer type="text/javascript" src="sol.bundle.js"></script>
 </head>
 
 

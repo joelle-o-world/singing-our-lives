@@ -1,7 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    sol: './src/index.js', 
+    polyfill: './src/polyfill.js'
+  },
   mode: 'development',
   watch: false, // otherwise it will pause npm build indefinitely.
   // If you need to watch use the -w command line flag.
@@ -11,7 +14,7 @@ module.exports = {
   },
 
   output: {
-    filename: 'sol.bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'public'),
     library: 'SingingOurLives',
     libraryTarget: 'window',
