@@ -13,16 +13,35 @@ class MediaUploads{
   makeHTML(){
     //make div body for whole element
     this.div = document.createElement('div');
-    this.div.id = 'media_uploads_body';
+    this.div.className = 'sol_MediaUploads';
+
+    this.header = document.createElement('h3');
+    this.header.innerText = 'Your uploads:';
 
     this.mediaList = document.createElement('div');
-    this.mediaList.id = 'playbacksDiv';
+
+    this.nothing = document.createElement('div')
+    this.nothing.innerHTML = 'Nothing here so far..'
 
     //add buttons and test to main body:
+    this.div.appendChild(this.header);
     this.div.appendChild(this.mediaList);
+    this.div.appendChild(this.nothing);
+
+    this.update();
 
     //return the main body:
     return this.div;
+  }
+
+  update() {
+    if(this.items.length) {
+      this.nothing.hidden = true;
+      this.mediaList.hidden = false;
+    } else {
+      this.nothing.hidden = false;
+      this.mediaList.hidden = true;
+    }
   }
 
   add(blob) {
@@ -34,6 +53,8 @@ class MediaUploads{
     } catch(err) {
       console.error(err)
     }
+
+    this.update();
   }
 
   clear() {
@@ -41,12 +62,27 @@ class MediaUploads{
       this.mediaList.removeChild(this.mediaList.firstChild);
 
     this.items = [];
+
+    this.update();
   }
 
   get blobs() {
     return this.items
       .filter(media => media.enabled)
       .map(media => media.blob);
+  }
+
+  get headerText() {
+    if(this.header)
+      return this.header.innerText;
+    else return null
+  }
+
+  set headerText(str) {
+    // Call makeHTML to make sure header exists
+    this.makeHTML();
+
+    this.header.innerText = str;
   }
 }
 

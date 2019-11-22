@@ -1,14 +1,20 @@
 /* RECORDING PAGE */
 #recording_page {
   text-align:center;
-  padding-bottom: 4%;
+  padding:0px;
+}
+
+#recording_page .left_half,
+#recording_page .right_half {
+  display:inline-block;
+  box-sizing: border-box;
+  width:50%;
 }
 
 #p5canvas{
   z-index: -1;
   position: absolute;
 }
-
 
 #recorder_wrapper:empty {
   border:1px dashed #ccc;
@@ -20,10 +26,6 @@
   margin-left:auto;
 }
 
-.provocation_text{
-  text-align: left;
-}
-
 #lyrics_form{
   width: 350px;
   margin-right:auto;
@@ -31,8 +33,8 @@
   text-align: center;
 }
 
-#lyrics_textarea{
-  min-width: 100%;
+#lyrics_form > textarea {
+  width: 100%;
   height:40px;
 }
 
@@ -54,7 +56,6 @@
 .recorderButton:disabled {
   color:#999999;
   background-color:#333333;
-
 }
 
 .sol_filepicker > input{
@@ -68,21 +69,27 @@
   color:var(--button-col1);
 }
 
-#media_uploads_body{
-  width: 350px;
-  margin-right:auto;
-  margin-left:auto;
-}
-
-
-
-.img_display_wrapper{
-  width: 100%;
-  height: 150px;
-  padding: 2px;
-}
-
 .img_display_img{
   max-height: 100%;
+}
+
+
+
+.sol_MediaUploads {
+
+}
+
+.sol_MediaInterface {
+  display:block;
+}
+
+.sol_MediaInterface > * {
+  vertical-align: middle;
+  margin:5px;
+}
+
+.sol_MediaInterface > audio, 
+.sol_MediaInterface > img {
+  width: 70%;
 }
 /***********************************/

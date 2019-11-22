@@ -17,7 +17,7 @@ export class MediaInterface {
 
     // Create div
     this.div = document.createElement('div');
-    this.div.className = "sol_mediainterface";
+    this.div.className = "sol_MediaInterface";
 
     // Create enabled check box
     let checkbox = document.createElement("input");
@@ -51,7 +51,7 @@ export class MediaInterface {
         throw `Unexpected media kind: ${this.mediaKind}`;
     }
 
-    let deleteButton = document.createElement('button');
+    /*let deleteButton = document.createElement('button');
     deleteButton.innerText = 'discard';
     deleteButton.onclick = () => {
       this.enabled = false;
@@ -59,11 +59,11 @@ export class MediaInterface {
         this.div.parentElement.removeChild(this.div);
       if(this.parentMediaUploads)
         this.parentMediaUploads.updateState();
-    };
+    };*/
 
     this.div.appendChild(checkbox);
     this.div.appendChild(this.mediaElement);
-    this.div.appendChild(deleteButton);
+    //this.div.appendChild(deleteButton);
 
     return this.div;
   }

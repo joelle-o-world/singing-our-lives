@@ -12,33 +12,6 @@
   max-height: 100%;
 }
 
-.header{
-  min-width: 100%;
-  max-height: 200px;
-  position: relative;
-  overflow: hidden;
-}
-.row{
-  height: inherit;
-  min-width: 100%;
-}
-.column{
-  float: left;
-  position: relative;
-  min-width: 100%;
-  height: inherit;
-}
-div.column > img{
-  float: left;
-  /* max-height: 100%; */
-  width: 100%;
-}
-.row::after{
-  content: "";
-  clear: both;
-  display: table;
-}
-
 #welcome_page > h1 {
   font-family: Arial;
   font-weight: 300;
