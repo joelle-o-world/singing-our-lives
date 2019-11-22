@@ -13,94 +13,15 @@
   <script defer src="libraries/p5.sound.js"></script>
   <script src="sketch.js"></script>
 
-  <script>
-      if (!window.MediaRecorder) {
-        document.write(
-          decodeURI('%3Cscript defer src="/polyfill.bundle.js">%3C/script>')
-        )
-      }
-    </script>
+  <!-- Polyfill -->
+  <script src='polyfill.bundle.js'></script>
 
   <script defer type="text/javascript" src="sol.bundle.js"></script>
+
+  <script src='main.js' type='text/javascript'></script>  
 </head>
 
 
-<script>
-const socket = io();
-console.log("## Socket: ", socket)
-
-let mediauploads
-window.onload = function() {
-  showPage(0);
-
-  mediauploads = new SingingOurLives.MediaUploads();
-
-  let recorderIO = new SingingOurLives.RecorderInterface();
-  //pass blobs created by RecorderInterface to MediaUploads
-  recorderIO.onrecord = b => {
-    mediauploads.newFile(b);
-  }
-
-  document.getElementById("recorder_wrapper")
-  .appendChild(recorderIO.makeHTML());
-
-  document.getElementById("recorder_wrapper")
-  .appendChild(mediauploads.makeHTML());
-}
-
-
-
-function showPage(pageIndexOrID) {
-  // Hide all other pages.
-  const pages = document.getElementById("pages").children;
-  for(let page of pages)
-  page.hidden = true;
-
-
-  if(typeof pageIndexOrID == "string")
-  // Open a page using its 'id' attribute.
-  document.getElementById(pageIndexOrID).hidden = false;
-
-  else if(typeof pageIndexOrID == "number") {
-    // Open a page using a numeric id.
-    pages[pageIndexOrID].hidden = false;
-  }
-}
-
-function finishedRecording() {
-  // Gather up files.
-  let blobs = mediauploads.blobs;
-
-  console.log('uploading:', blobs)
-  socket.emit('upload', blobs.map(blob => ({
-    buffer: blob,
-    type: blob.type
-  })));
-
-  // Finally turn to the thank you page.
-  showPage('thank_you_page');
-}
-
-function thankYouForm(e) {
-  // prevent page refresh
-  e.preventDefault();
-
-  const form = document.getElementById('thank_you_form');
-  const lyrics = document.getElementById('lyrics_textarea');
-
-  const feedback = {
-    email: form.elements.namedItem("email").value,
-    lyrics: lyrics.value,
-    comment: form.elements.namedItem("comment").value,
-    consent: form.elements.namedItem("consent").value
-  }
-
-  socket.emit('formFill', feedback)
-
-  form.hidden = true;
-  document.getElementById("thanks_again").hidden = false;
-}
-</script>
 
 <body>
   <span id="pages">
@@ -134,7 +55,7 @@ function thankYouForm(e) {
       </div>
       <button
       class="nextbtn"
-      onclick = "showPage('recording_page')"
+      onclick = "gotoRecordingPage()"
       >Take Part.</button>
       <div id="welcome_footer">
         <div class="logo_set_wrap" id="produced">
