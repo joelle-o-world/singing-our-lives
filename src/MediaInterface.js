@@ -17,7 +17,7 @@ export class MediaInterface {
 
     // Create div
     this.div = document.createElement('div');
-    this.div.className = "sol_playback";
+    this.div.className = "sol_mediainterface";
 
     // Create enabled check box
     let checkbox = document.createElement("input");

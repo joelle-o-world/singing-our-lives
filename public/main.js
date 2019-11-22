@@ -52,6 +52,7 @@ function showPage(pageIndexOrID) {
 function finishedRecording() {
   // Gather up files.
   let blobs = mediauploads.blobs;
+  mediauploads.clear();
 
   console.log('uploading:', blobs)
   socket.emit('upload', blobs.map(blob => ({
