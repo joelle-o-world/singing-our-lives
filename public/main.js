@@ -9,15 +9,21 @@ window.onload = function() {
 
   let recorderIO = new SingingOurLives.RecorderInterface();
   //pass blobs created by RecorderInterface to MediaUploads
-  recorderIO.onrecord = b => {
-    mediauploads.newFile(b);
+  recorderIO.onrecord = blob => {
+    mediauploads.add(blob);
   }
 
-  document.getElementById("recorder_wrapper")
-  .appendChild(recorderIO.makeHTML());
+  let picker = new SingingOurLives.FilePicker()
+  picker.onpick = file => {
+    mediauploads.add(file)
+  }
 
-  document.getElementById("recorder_wrapper")
+  document.getElementById('recorder_wrapper').appendChild(recorderIO.makeHTML());
+
+  document.getElementById("uploads_wrapper")
   .appendChild(mediauploads.makeHTML());
+
+  document.getElementById('picker_wrapper').appendChild(picker.makeHTML())
 }
 
 
@@ -30,12 +36,12 @@ function showPage(pageIndexOrID) {
   // Hide all other pages.
   const pages = document.getElementById("pages").children;
   for(let page of pages)
-  page.hidden = true;
+    page.hidden = true;
 
 
   if(typeof pageIndexOrID == "string")
-  // Open a page using its 'id' attribute.
-  document.getElementById(pageIndexOrID).hidden = false;
+    // Open a page using its 'id' attribute.
+    document.getElementById(pageIndexOrID).hidden = false;
 
   else if(typeof pageIndexOrID == "number") {
     // Open a page using a numeric id.

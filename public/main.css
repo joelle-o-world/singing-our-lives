@@ -218,13 +218,13 @@ div.logo_wrap > img{
 
 }
 
-#uploadLabel{
+.sol_filepicker > input{
   background-color:var(--button-col1);
   color:var(--button-col2);
   border:1px solid var(--button-col1);
   padding: 0px 35px 0px 35px;
 }
-#uploadLabel:hover{
+.sol_filepicker > input:hover{
   background-color:white;
   color:var(--button-col1);
 }
@@ -233,15 +233,6 @@ div.logo_wrap > img{
   width: 350px;
   margin-right:auto;
   margin-left:auto;
-}
-
-#uploadFileButton{
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
 }
 
 

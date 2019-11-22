@@ -12,7 +12,6 @@ const mimePriorities = [
 let mediaRecorder;
 class RecorderInterface {
   constructor() {
-    this.recordings = [];
 
     this.onrecord = null;
 
@@ -55,18 +54,11 @@ class RecorderInterface {
     this.stoprecordingbutton.innerHTML = "Stop Recording";
     this.stoprecordingbutton.addEventListener("click", () => this.stop());
 
-    // Add an upload button
-    this.uploadBtn = document.createElement('button');
-    this.uploadBtn.className = 'recorderButton';
-    this.uploadBtn.innerText = 'Send 0 recordings';
-    this.uploadBtn.addEventListener('click', () => this.upload())
-
     //append all elements to the recorderBody:
     this.recorderBody.appendChild(this.heading);
     this.recorderBody.appendChild(this.provo_div);
     this.recorderBody.appendChild(this.recordbutton);
     this.recorderBody.appendChild(this.stoprecordingbutton);
-    this.recorderBody.appendChild(this.uploadBtn);
     return this.recorderBody;
   }
 
@@ -104,12 +96,6 @@ class RecorderInterface {
           console.warn("Unknown state:", state);
       }
     }
-
-    let nEnabledRecordings = this.recordings.filter(o => o.enabled).length
-    this.uploadBtn.innerText = "Send "
-      +  nEnabledRecordings
-      + " recordings";
-    this.uploadBtn.hidden = nEnabledRecordings == 0;
   }
 
   record() {
@@ -147,8 +133,6 @@ class RecorderInterface {
 
         mediaRecorder.start(); //start recording
 
-
-
         //event handler, executed whenever new data is available from the MediaRecorder
         mediaRecorder.addEventListener('dataavailable', e => {
           console.log('## data available', e.data.type);
@@ -165,7 +149,8 @@ class RecorderInterface {
           let blob = new Blob(chunks, {type: mime});
           if(this.onrecord){
             this.onrecord(blob);
-          }
+          } else
+            console.warn('no behaviour defined for handling new recordings.')
 
         })
       })
@@ -182,24 +167,6 @@ class RecorderInterface {
     console.log("## Calling stop()");
     mediaRecorder.stop();
     this.updateState("recorded");
-  }
-
-  clearPlaybacks() {
-    this.recordings = [];
-    while(this.playbacksDiv.firstChild)
-      this.playbacksDiv.removeChild(this.playbacksDiv.firstChild);
-
-    this.updateState();
-  }
-
-  upload() {
-    let blobsToUpload = this.recordings.filter(o => o.enabled)
-      .map(o => o.audioBlob);
-
-    if(this.onupload)
-      this.onupload(blobsToUpload);
-
-    this.clearPlaybacks();
   }
 }
 
