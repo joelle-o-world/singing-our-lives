@@ -1,0 +1,88 @@
+/* RECORDING PAGE */
+#recording_page {
+  text-align:center;
+  padding-bottom: 4%;
+}
+
+#p5canvas{
+  z-index: -1;
+  position: absolute;
+}
+
+
+#recorder_wrapper:empty {
+  border:1px dashed #ccc;
+  background: dotted #ccc;
+  display: block;
+  width:300px;
+  height:300px;
+  margin-right:auto;
+  margin-left:auto;
+}
+
+.provocation_text{
+  text-align: left;
+}
+
+#lyrics_form{
+  width: 350px;
+  margin-right:auto;
+  margin-left:auto;
+  text-align: center;
+}
+
+#lyrics_textarea{
+  min-width: 100%;
+  height:40px;
+}
+
+.recorder_body{
+  width:350px;
+  margin-right:auto;
+  margin-left:auto;
+}
+
+.recorderButton{
+  width: 100%;
+  height: 33%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right:auto;
+  margin-left:auto;
+  font-size: 30px;
+}
+.recorderButton:disabled {
+  color:#999999;
+  background-color:#333333;
+
+}
+
+.sol_filepicker > input{
+  background-color:var(--button-col1);
+  color:var(--button-col2);
+  border:1px solid var(--button-col1);
+  padding: 0px 35px 0px 35px;
+}
+.sol_filepicker > input:hover{
+  background-color:white;
+  color:var(--button-col1);
+}
+
+#media_uploads_body{
+  width: 350px;
+  margin-right:auto;
+  margin-left:auto;
+}
+
+
+
+.img_display_wrapper{
+  width: 100%;
+  height: 150px;
+  padding: 2px;
+}
+
+.img_display_img{
+  max-height: 100%;
+}
+/***********************************/

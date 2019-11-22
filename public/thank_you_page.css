@@ -1,0 +1,28 @@
+/* THANK YOU PAGE */
+#thank_you_page{
+  padding-bottom: 10%;
+}
+
+#thank_you_page_text_wrapper {
+  margin-left:10%;
+  margin-right:10%;
+}
+
+#thank_you_titles{
+  text-align: center;
+}
+
+#thank_you_body{
+  text-align: left;
+}
+
+#form_wrap{
+  text-align: left;
+  /* background-color: grey; */
+  width: 100%;
+}
+input{
+  width: 30%;
+  margin:5px 0;
+}
+/***********************************/
