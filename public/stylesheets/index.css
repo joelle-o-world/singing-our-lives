@@ -3,11 +3,46 @@
 /*pink: #e31378*/
 /*magenta: #9b1750*/
 /*red: #d31640*/
+/* HEADER */
+header#topbanner {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  min-width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+header#topbanner .banner {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  z-index: -1;
+  width: 100%;
+  min-height: 200px;
+}
+header#topbanner .logo {
+  height: 100%;
+  opacity: 0.8;
+}
 
-@import url(general.css);
-@import url(welcome_page.css);
-@import url(recorder_page.css);
-@import url(thank_you_page.css);
+#pages {
+  display: block;
+  margin-top: 200px;
+}
 
+/** FOOTER */
+footer {
+  margin-top: 50px;
+}
+footer .logo_group {
+  text-align: center;
+}
+footer .logo_group img.logo {
+  vertical-align: middle;
+  max-height: 160px;
+  max-width: 200px;
+}
 
-
+/*# sourceMappingURL=index.css.map */

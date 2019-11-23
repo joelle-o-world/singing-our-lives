@@ -1,32 +1,28 @@
 /* THANK YOU PAGE */
-#thank_you_page {
+#thank_you_page{
   padding-bottom: 10%;
 }
 
 #thank_you_page_text_wrapper {
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left:10%;
+  margin-right:10%;
 }
 
-#thank_you_titles {
+#thank_you_titles{
   text-align: center;
 }
 
-#thank_you_body {
+#thank_you_body{
   text-align: left;
 }
 
-#form_wrap {
+#form_wrap{
   text-align: left;
   /* background-color: grey; */
   width: 100%;
 }
-
-#thank_you_page input {
+#thank_you_page input{
   width: 30%;
-  margin: 5px 0;
+  margin:5px 0;
 }
-
 /***********************************/
-
-/*# sourceMappingURL=thank_you_page.css.map */

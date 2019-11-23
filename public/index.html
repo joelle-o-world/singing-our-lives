@@ -25,14 +25,14 @@
 
 <body>
 
-  <div id="header">
-    <img class="sol_logo" src="assets/imgs/sol_logo.png">
-    <div class="row">
-      <div class="column">
-        <img src="assets/imgs/banner1.png">
-      </div>
-    </div>
-  </div>
+  <!-- HEADER -->
+  <header id="topbanner">
+    <img class="logo" src="assets/imgs/sol_logo.png">
+    <img src="assets/imgs/banner1.png" class='banner'>
+  </header>
+
+
+  <!-- WELCOME PAGE -->
   <span id="pages">
     <div id="welcome_page">
       <div id="welcome_text_wrapper">
@@ -58,22 +58,6 @@
       class="nextbtn"
       onclick = "gotoRecordingPage()"
       >Take Part.</button>
-      <div id="welcome_footer">
-        <div class="logo_set_wrap" id="produced">
-          <div class="logo_wrap">
-            <img src="assets/imgs/TogetherLogoVertical.png">
-          </div>
-          <div class="logo_wrap">
-            <img id="gsmd" src="assets/imgs/gsmd_logo.png">
-          </div>
-          <div class="logo_wrap">
-            <img src="assets/imgs/community_fund.png">
-          </div>
-          <div class="logo_wrap">
-            <img src="assets/imgs/lottery_logo.jpg">
-          </div>
-        </div>
-      </div>
     </div>
 
     <div id="recording_page" hidden>
@@ -124,6 +108,15 @@
       </div>
     </div>
   </span>
+
+  <footer>
+    <div class="logo_group" id="produced">
+      <img src="assets/imgs/TogetherLogoVertical.png" class='logo' />
+      <img src="assets/imgs/gsmd_logo.png" class='logo' />
+      <img src="assets/imgs/community_fund.png" class='logo' />
+      <img src="assets/imgs/lottery_logo.jpg" class='logo' />
+    </div>
+  </footer>
 </body>
 
 </html>
