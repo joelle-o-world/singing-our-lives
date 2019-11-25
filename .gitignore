@@ -3,3 +3,4 @@ formfills
 public/sol.bundle.js
 /well-known
 public/polyfill.bundle.js
+*.mp4
