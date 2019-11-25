@@ -1,19 +1,17 @@
 const socket = io();
 console.log("## Socket: ", socket)
 
+
+
 let mediauploads
 window.onload = function() {
   showPage(0);
 
 
-  let sendbtn = document.getElementById('send_recordings');
+  
 
   mediauploads = new SingingOurLives.MediaUploads();
-  mediauploads.onupdate = () => {
-    let n = mediauploads.nChecked
-    sendbtn.innerText = `Send ${n} files & continue...`
-    sendbtn.disabled = n == 0;
-  }
+  mediauploads.onupdate = updateSendBtnState()
 
   let recorderIO = new SingingOurLives.RecorderInterface();
   //pass blobs created by RecorderInterface to MediaUploads
@@ -99,4 +97,11 @@ function thankYouForm(e) {
 function gotoRecordingPage() {
   setup_visualiser();
   showPage('recording_page');
+}
+
+function updateSendBtnState() {
+  let sendbtn = document.getElementById('send_recordings');
+  let n = mediauploads.nChecked
+  sendbtn.innerText = `Send ${n} files & continue...`
+  sendbtn.disabled = n == 0 && document.getElementById('lyrics_textarea').value.length == 0;
 }
