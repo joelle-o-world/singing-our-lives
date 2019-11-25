@@ -65,18 +65,19 @@
     </div>
 
     <div id="recording_page" hidden>
+      <div id="p5canvas"></div>
       <div class=prompt>
         <h1>Got a musical idea?</h1>
         <p>We're interested in receiving any musical ideas to help influence or write our songs.  Perhaps there's a favourite folk song you could share or you just fancy improvising a melody or beat.  Press record and perform, sing, or playback a track.</p>
         <p>Our themes for songs this year are Nature, Future, Unity and Love. We'd love to hear what you think! Share your thoughts with us - write an original poem, a haiku or a fragment of writing - or just jot down your ideas in diary or prose form. Even one line can help us weave together something beautiful!</p>
       </div>
 
+
       <div class='row'>
         <div class=left_panel>
           <h2>Make a new recording:</h2>
 
           <div id="recorder_wrapper"></div>
-          <div id="p5canvas"></div>
 
 
           <strong class='or'>OR</strong>
@@ -117,11 +118,11 @@
         <p>Please fill-in your details here to join our mailing list.</p>
         <input name="email" type=email placeholder="email (optional)" />
         <textarea name="comment" placeholder="Anything else to add?"></textarea>
-        <p><input type="checkbox" name="consent"/>Please tick here to indicate that you allow Together Productions to use the contributions you have provided.</p>
+        <p><input type="checkbox" name="consent"/>Please tick here to indicate that you allow Together Productions to use your contributions.</p>
         <button class=nextbtn onclick="thankYouForm(event)">Submit</button>
       </form>
       
-      <div id=thanks_again hidden>Thank you for your contributions!</div>
+      <div id=thanks_again hidden>Thank you for your contribution!</div>
 
       <button class=backbtn onclick="showPage('recording_page')">Back</button>
     </div>

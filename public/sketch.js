@@ -16,7 +16,7 @@ function setup() {
 
 let isVisualiserRunning = false;
 function setup_visualiser(){
-  canvas = createCanvas(250, 75);
+  canvas = createCanvas(windowWidth,300);
   canvas.parent('p5canvas');
 
   audio_segs = 21;

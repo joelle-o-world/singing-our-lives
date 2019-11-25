@@ -193,11 +193,12 @@ footer .logo_group img.logo {
   font-size: 18px;
 }
 #recording_page #p5canvas {
-  width: 250px;
-  height: 75px;
-  margin-right: auto;
-  margin-left: auto;
-  overflow: hidden;
+  position: absolute;
+  top: 475px;
+  left: 0px;
+  right: 0px;
+  z-index: -1;
+  opacity: 0.35;
 }
 #recording_page .sol_RecorderInterface button {
   display: block;
