@@ -10,12 +10,13 @@ export class FilePicker {
       return this.div;
 
     this.div = document.createElement('div');
-    this.div.className = 'sol_filepicker';
+    this.div.className = 'sol_FilePicker';
 
     let label = document.createElement('label');
     label.className = 'recorderButton';
     label.htmlFor = 'uploadFileButton';
     label.innerHTML = 'Upload a file';
+    label.addEventListener('click', () => this.button.click())
     
     this.button = document.createElement('input');
     this.button.type = 'file';
@@ -25,7 +26,7 @@ export class FilePicker {
     );
 
     this.div.appendChild(label)
-    this.div.appendChild(this.button);
+    label.appendChild(this.button);
   }
 
   handleFilePick(e) {

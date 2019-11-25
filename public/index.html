@@ -32,81 +32,101 @@
   </header>
 
 
-  <!-- WELCOME PAGE -->
+  
   <span id="pages">
+    <!-- NOTE: Every div inside here will be treated as a seperate page. -->
+
+    <!-- WELCOME PAGE -->
     <div id="welcome_page">
-      <div id="welcome_text_wrapper">
-        <div id="welcome_titles">
-          <h2>Welcome to the Singing Our Lives Songwriting Project:</h2>
-          <h1>Singing Your Life</h1>
-        </div>
-        <div id="welcome_body">
-          <p>On this site you will be able to become part of a massive songwriting project!</p>
-          <p>Now in its third year, <a href="http://togetherproductions.co.uk/singing-our-lives.html">Singing Our Lives</a> is a ground-breaking project bringing refugees, migrants and the wider communities across the UK together with professional musicians to compose new music and perform together.</p>
-          <p>Conceived and developed by <a href="http://togetherproductions.co.uk/">Together Productions</a>, the project has attracted partners including the Royal Opera House, Guildhall School of Music and Drama and the International Organization for Migration, amongst many others. The project celebrates diversity and solidarity through choral music and has pioneered a unique collaborative dialogue and composition process that results in powerful new works reflecting the culture and experiences of hundreds of people from diverse backgrounds across the UK.</p>
-          <strong>We are now expanding the project to enable anyone to be included!</strong>
-          <p><strong>HOW?:</strong> On the following page, you can record your own music (up to 5 mins), or upload lyrics or an image that is your response to the prompt on that page.</p>
-          <p><strong>WHY?:</strong> So far the Singing Our Lives choirs have collectively written <a href="https://soundcloud.com/user-253631663/sets/singing-our-lives-1">four wonderful songs</a> and we would love to include your ideas for the next phase of the project. Once they are written we will invite you to hear them performed live in concert and you will be part of a global creative team that aims to bring together people who otherwise would never meet, to celebrate our similarities as well as our differences.</p>
-          <p><strong>BUT I CAN’T SING!</strong> We welcome everyone’s contributions, no matter whether you’re a complete beginner or experienced creative; we believe everyone has a voice!</p>
-          <p><strong>WHAT WILL YOU DO WITH MY CONTRIBUTION?:</strong> Our brilliant creative team of composer <a href="http://www.stilltimemusic.co.uk/">Mike Roberts</a> and librettist <a href="https://en.wikipedia.org/wiki/Tess_Berry-Hart">Tess Berry-Hart</a> will add your contributions to the mix and will curate it into three brand new songs!</p>
-        </div>
-      </div>
-      <div id="welcome_video_div">
-        <video id= "welcome_video" src="assets/ellie.mp4" controls/>
-      </div>
+      <hgroup>
+        <h2>Welcome to the Singing Our Lives Songwriting Project:</h2>
+        <h1>SINGING <i>YOUR</i> LIFE</h1>
+      </hgroup>
+
+      <video 
+        id="welcome_video" 
+        src="assets/ellie.mp4" 
+        poster=assets/imgs/sol_logo.png 
+        controls
+      ></video>
+      <p>On this site you will be able to become part of a massive songwriting project!</p>
+      <p>Now in its third year, <a href="http://togetherproductions.co.uk/singing-our-lives.html">Singing Our Lives</a> is a ground-breaking project bringing refugees, migrants and the wider communities across the UK together with professional musicians to compose new music and perform together.</p>
+      <p>Conceived and developed by <a href="http://togetherproductions.co.uk/">Together Productions</a>, the project has attracted partners including the Royal Opera House, Guildhall School of Music and Drama and the International Organization for Migration, amongst many others. The project celebrates diversity and solidarity through choral music and has pioneered a unique collaborative dialogue and composition process that results in powerful new works reflecting the culture and experiences of hundreds of people from diverse backgrounds across the UK.</p>
+      <strong>We are now expanding the project to enable anyone to be included!</strong>
+      <p><strong>HOW?:</strong> On the following page, you can record your own music (up to 5 mins), or upload lyrics or an image that is your response to the prompt on that page.</p>
+      <p><strong>WHY?:</strong> So far the Singing Our Lives choirs have collectively written <a href="https://soundcloud.com/user-253631663/sets/singing-our-lives-1">four wonderful songs</a> and we would love to include your ideas for the next phase of the project. Once they are written we will invite you to hear them performed live in concert and you will be part of a global creative team that aims to bring together people who otherwise would never meet, to celebrate our similarities as well as our differences.</p>
+      <p><strong>BUT I CAN’T SING!</strong> We welcome everyone’s contributions, no matter whether you’re a complete beginner or experienced creative; we believe everyone has a voice!</p>
+      <p><strong>WHAT WILL YOU DO WITH MY CONTRIBUTION?:</strong> Our brilliant creative team of composer <a href="http://www.stilltimemusic.co.uk/">Mike Roberts</a> and librettist <a href="https://en.wikipedia.org/wiki/Tess_Berry-Hart">Tess Berry-Hart</a> will add your contributions to the mix and will curate it into three brand new songs!</p>
+
       <button
-      class="nextbtn"
-      onclick = "gotoRecordingPage()"
-      >Take Part.</button>
+        class="nextbtn"
+        onclick = "gotoRecordingPage()"
+      >Take Part...</button>
     </div>
 
     <div id="recording_page" hidden>
-
-      <div id="p5canvas"></div>
-      <div id="recorder_wrapper"></div>
-      <div id='picker_wrapper'></div>
-      <div id="lyrics_form">
-        <h1>Submit lyrics:</h1>
+      <div class=prompt>
+        <h1>Got a musical idea?</h1>
+        <p>We're interested in receiving any musical ideas to help influence or write our songs.  Perhaps there's a favourite folk song you could share or you just fancy improvising a melody or beat.  Press record and perform, sing, or playback a track.</p>
         <p>Our themes for songs this year are Nature, Future, Unity and Love. We'd love to hear what you think! Share your thoughts with us - write an original poem, a haiku or a fragment of writing - or just jot down your ideas in diary or prose form. Even one line can help us weave together something beautiful!</p>
-        <textarea name="lyrics" id="lyrics_textarea"></textarea>
       </div>
 
-      <span id='uploads_wrapper'></span>
+      <div class='row'>
+        <div class=left_panel>
+          <h2>Make a new recording:</h2>
+
+          <div id="recorder_wrapper"></div>
+          <div id="p5canvas"></div>
+
+
+          <strong class='or'>OR</strong>
+          <h2>Send a recording or photo saved on your computer:</h2>
+          <div id='picker_wrapper'></div>
+
+          <strong class='or'>OR</strong>
+
+          <h2>Send lyrics or text:</h2>
+          
+          <textarea name="lyrics" id="lyrics_textarea" placeholder="Enter text here..."></textarea>
+        </div>
+        <span id='uploads_wrapper'></span>
+      </div>
+      
 
       
 
-      <button class=nextbtn onclick="finishedRecording()">Send & Continue</button>
+      <button id='send_recordings' class=nextbtn onclick="finishedRecording()" disabled>Send & Continue</button>
       <br>
-      <button class=nextbtn onclick="showPage('welcome_page')">Back</button>
+      <button class=backbtn onclick="showPage('welcome_page')">Back</button>
     </div>
 
     <div id="thank_you_page" hidden>
-      <div id="thank_you_page_text_wrapper">
-        <div id="thank_you_titles">
-          <h2>Thank you so much for being part of the Singing Our Lives Songwriting Project:</h2>
-          <h1>Singing Your Life.</h1>
-        </div>
-        <div id="thank_you_body">
-          <p>Your creative contributions are now in the big pool of music, words and art that our team are going to turn into new songs.</p>
-          <p>We would love to stay in touch with you so we can let you know what’s happening with the project and invite you to hear them when they are complete.</p>
-          <p>Please complete your details here to join our mailing list.</p>
-        </div>
-        <div id="form_wrap">
-          <form id="thank_you_form">
-            <input name="email" placeholder="email (optional)" />
-            <br>
-            <textarea name="comment" placeholder="Anything else to add?"></textarea>
-            <br>
-            <p>Please tick the following box to indicate that you allow Together Productions to use the contributions you have provided:</p>
-            <input type="checkbox" name="consent"/>
-            <br>
-            <button class=nextbtn onclick="thankYouForm(event)">Submit</button>
-          </form>
-          <button class=nextbtn onclick="showPage('recording_page')">Back</button>
-          <div id=thanks_again hidden>Thank you for your contributions!</div>
-        </div>
+      <hgroup id="thank_you_titles">
+        <h2>Thank you so much for being part of the Singing Our Lives Songwriting Project:</h2>
+        <h1>SINGING <i>YOUR</i> LIFE</h1>
+      </hgroup>
+
+      <div id="thank_you_body">
+        <p>Your creative contributions are now in the big pool of music, words and art that our team are going to turn into new songs.</p>
+        <p>We would love to stay in touch with you so we can let you know what’s happening with the project and invite you to hear them when they are complete.</p>
       </div>
+
+      
+      <form id="thank_you_form">
+
+        <p>Please fill-in your details here to join our mailing list.</p>
+        <input name="email" type=email placeholder="email (optional)" />
+        <textarea name="comment" placeholder="Anything else to add?"></textarea>
+        <p><input type="checkbox" name="consent"/>Please tick here to indicate that you allow Together Productions to use the contributions you have provided.</p>
+        <button class=nextbtn onclick="thankYouForm(event)">Submit</button>
+      </form>
+      
+      <div id=thanks_again hidden>Thank you for your contributions!</div>
+
+      <button class=backbtn onclick="showPage('recording_page')">Back</button>
     </div>
+
+    
   </span>
 
   <footer>

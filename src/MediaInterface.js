@@ -25,6 +25,7 @@ export class MediaInterface {
     checkbox.checked = this.enabled;
     checkbox.addEventListener('change', () => {
       this.enabled = checkbox.checked;
+      this.div.setAttribute('checked', this.enabled);
       if(this.parentMediaUploads)
         this.parentMediaUploads.updateState();
     });

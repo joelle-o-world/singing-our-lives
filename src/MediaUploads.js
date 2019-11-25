@@ -8,6 +8,7 @@ class MediaUploads{
     this.makeHTML();
 
     this.onupload = null;
+    this.onupdate = null;
   }
 
   makeHTML(){
@@ -15,13 +16,14 @@ class MediaUploads{
     this.div = document.createElement('div');
     this.div.className = 'sol_MediaUploads';
 
-    this.header = document.createElement('h3');
+    this.header = document.createElement('h2');
     this.header.innerText = 'Your uploads:';
 
     this.mediaList = document.createElement('div');
 
     this.nothing = document.createElement('div')
-    this.nothing.innerHTML = 'Nothing here so far..'
+    this.nothing.className = 'nothing'
+    this.nothing.innerHTML = "You haven't uploaded anything yet..."
 
     //add buttons and test to main body:
     this.div.appendChild(this.header);
@@ -42,6 +44,9 @@ class MediaUploads{
       this.nothing.hidden = false;
       this.mediaList.hidden = true;
     }
+
+    if(this.onupdate)
+      this.onupdate();
   }
 
   add(blob) {
@@ -70,6 +75,10 @@ class MediaUploads{
     return this.items
       .filter(media => media.enabled)
       .map(media => media.blob);
+  }
+
+  get nChecked() {
+    return this.blobs.length;
   }
 
   get headerText() {

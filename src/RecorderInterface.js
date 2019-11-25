@@ -27,26 +27,13 @@ class RecorderInterface {
     //create a new div to contain the HTML for this object:
     this.recorderBody = document.createElement('div');
     //give it a class name to stylize it later:
-    this.recorderBody.className = 'recorder_body';
+    this.recorderBody.className = 'sol_RecorderInterface';
 
     //create a record button:
     this.recordbutton = document.createElement('button');
     this.recordbutton.className = 'recorderButton';
     this.recordbutton.innerHTML = 'Start Recording';
     this.recordbutton.addEventListener("click", () => this.record());
-
-    //create a heading:
-    this.heading = document.createElement('h1');
-    this.heading.id = 'recorder_heading';
-    this.heading.innerHTML = 'Make a new recording:';
-
-    //create a provocation:
-    this.provo_div = document.createElement('div');
-    this.provo_div.className = 'provocation_text';
-
-    this.provo_text = document.createElement('p');
-    this.provo_text.innerHTML = "We're interested in receiving any musical ideas to help influence or write our songs.  Perhaps there's a favourite folk song you could share or you just fancy improvising a melody or beat.  Press record and perform, sing, or playback a track.";
-    this.provo_div.appendChild(this.provo_text);
 
     // create a stop recording button
     this.stoprecordingbutton = document.createElement("button");
@@ -55,8 +42,6 @@ class RecorderInterface {
     this.stoprecordingbutton.addEventListener("click", () => this.stop());
 
     //append all elements to the recorderBody:
-    this.recorderBody.appendChild(this.heading);
-    this.recorderBody.appendChild(this.provo_div);
     this.recorderBody.appendChild(this.recordbutton);
     this.recorderBody.appendChild(this.stoprecordingbutton);
     return this.recorderBody;

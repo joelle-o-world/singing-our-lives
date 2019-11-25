@@ -4,6 +4,62 @@
 /*magenta: #9b1750*/
 /*red: #d31640*/
 
+$color1: #d60b6d;
+$color2: #652a80;
+$color3: #471d5a;
+$font-family: "Trebuchet MS", Helvetica, sans-serif;
+
+body {
+  font-family: $font-family;
+  font-weight: 100;
+  background-color: white;
+}
+
+a:link {
+  color: $color1;
+}
+
+button {
+  background-color: $color2;
+  color: white;
+  border: 1px solid $color2;
+  padding:3px;
+  border-radius:5px;
+  border-bottom:5px solid $color3;
+  cursor: pointer;
+}
+
+button:hover:enabled {
+  background-color:white;
+  color: $color2;
+}
+
+button:disabled {
+  background-color:#333;
+  border-color:#222;
+  color:#222;
+  cursor: default;
+}
+
+button.nextbtn,
+button.backbtn {
+  //position: fixed;
+  //bottom: 30px;
+  font-size: 36px;
+  padding-left: 25px;
+  padding-right:25px;
+}
+button.nextbtn {
+  float:right;
+  clear:right;
+  //right: 30px;
+}
+button.backbtn {
+  //left: 30px;
+  float:left;
+  clear:left;
+}
+
 
 /* HEADER */
 header#topbanner {
@@ -41,7 +97,8 @@ header#topbanner {
 
 /** FOOTER */
 footer {
-  margin-top:50px;
+  margin-top:150px;
+  clear:both;
 
   .logo_group {
     text-align: center;
@@ -50,5 +107,233 @@ footer {
       max-height:160px;
       max-width: 200px;
     }
+  }
+}
+
+
+
+
+
+/* WELCOME PAGE */
+#welcome_page,
+#thank_you_page {
+  margin-right:50px;
+  margin-left:50px;
+
+  hgroup:first-of-type {
+    padding-top: 10px;
+    text-align: center;
+    h2 {
+      color: $color2;
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+
+    }
+    h1 {
+      color: $color1;
+      margin-top:0px;
+      padding-top:0px;
+      font-size: 50px;
+    }
+  }
+
+  video#welcome_video {
+    margin:20px;
+    margin-left: 40px;
+    width:50%;
+    float: right;
+    border:1px solid #ccc;
+  }
+
+  strong {
+    color: $color2;
+  }
+
+  >strong {
+    text-align:center;
+    font-size:24px;
+  }
+
+  p {
+    font-size: 18px;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  input[type=email] {
+    display:block;
+    font-size:18px;
+    font-family: $font-family;
+    border-radius: 5px;
+    padding:5px;
+    border: 1px solid #666;
+  }
+
+  textarea {
+    display:block;
+    width:100%;
+    height:100px;
+    resize: none;
+    border-radius: 5px;
+    border:1px solid #666;
+    padding:5px;
+    font-size:18px;
+    font-family: $font-family;
+  }
+
+  #thanks_again {
+    clear:both;
+    font-size:24px;
+    color:$color2;
+    margin-bottom: 30px;
+    text-align:center;
+  }
+}
+
+/* RECORDING PAGE */
+#recording_page {
+  max-width:1000px;
+  margin-right:auto;
+  margin-left:auto;
+  padding-left:30px;
+  padding-top:30px;
+
+  .prompt {
+    max-width:600px;
+    h1 {
+      margin-bottom:0px;
+      font-size: 36px;
+      color:$color2;
+    }
+
+    p {
+      font-size:18px;
+    }
+  }
+
+  #p5canvas {
+    width:250px;
+    height:75px;
+    margin-right:auto;
+    margin-left:auto;
+    overflow:hidden;
+  }
+
+  .sol_RecorderInterface {
+    button {
+      display:block;
+      width:100%;
+      font-size:24px;
+      margin:5px;
+    }
+  }
+
+  .sol_FilePicker {
+    display: block;
+    background-color: $color2;
+    color:white;
+    border: 1px solid $color3;
+    border-bottom: 5px solid $color3;
+    border-radius: 5px;
+    text-align: center;
+    font-size:24px;
+    padding:3px;
+    cursor: pointer;
+
+
+    input[type=file] {
+      display:none;
+    }
+  }
+  .sol_FilePicker:hover {
+    background-color: white;
+    color: $color3;
+  }
+
+  
+  .row {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .left_panel {
+      flex: 1 0 350px;
+      margin:20px;
+      padding-bottom: 30px;
+      max-width:50%;
+
+      >strong.or {
+        display: block;
+        text-align:center;
+        text-decoration: underline;
+        font-size:24px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        font-size:36px;
+        color: $color1;
+        margin-bottom:5px;
+      }
+
+      textarea {
+        display:block;
+        width:100%;
+        height:100px;
+        resize: none;
+        border-radius: 5px;
+        padding:5px;
+        font-size:18px;
+        font-family: $font-family;
+      }
+    }
+
+    #uploads_wrapper {
+      flex: 1 0 350px;
+      display:inline-block;
+      margin:20px;
+      margin-top:50px;
+      background-color: #eee;
+    }
+  }
+}
+
+.sol_MediaUploads {
+  //height:100%;
+  //min-height: 500px;
+  box-sizing: border-box;
+  padding:30px;
+
+
+  .nothing { 
+    text-align: center;
+    font-style: italic;
+  }
+
+  .sol_MediaInterface {
+    padding:5px;
+
+    * {
+      vertical-align: middle;
+    }
+
+    input[type=checkbox] {
+      display:inline-block;
+      margin:10px;
+    }
+
+    audio {
+      background:none;
+    }
+
+    img {
+      max-width:80%;
+      max-height: 200px;
+    }
+  }
+
+  .sol_MediaInterface[checked=false] {
+    opacity: 0.5;
   }
 }

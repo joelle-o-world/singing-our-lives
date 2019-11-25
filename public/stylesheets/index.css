@@ -3,6 +3,55 @@
 /*pink: #e31378*/
 /*magenta: #9b1750*/
 /*red: #d31640*/
+body {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-weight: 100;
+  background-color: white;
+}
+
+a:link {
+  color: #d60b6d;
+}
+
+button {
+  background-color: #652a80;
+  color: white;
+  border: 1px solid #652a80;
+  padding: 3px;
+  border-radius: 5px;
+  border-bottom: 5px solid #471d5a;
+  cursor: pointer;
+}
+
+button:hover:enabled {
+  background-color: white;
+  color: #652a80;
+}
+
+button:disabled {
+  background-color: #333;
+  border-color: #222;
+  color: #222;
+  cursor: default;
+}
+
+button.nextbtn,
+button.backbtn {
+  font-size: 36px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+button.nextbtn {
+  float: right;
+  clear: right;
+}
+
+button.backbtn {
+  float: left;
+  clear: left;
+}
+
 /* HEADER */
 header#topbanner {
   position: absolute;
@@ -34,7 +83,8 @@ header#topbanner .logo {
 
 /** FOOTER */
 footer {
-  margin-top: 50px;
+  margin-top: 150px;
+  clear: both;
 }
 footer .logo_group {
   text-align: center;
@@ -43,6 +93,205 @@ footer .logo_group img.logo {
   vertical-align: middle;
   max-height: 160px;
   max-width: 200px;
+}
+
+/* WELCOME PAGE */
+#welcome_page,
+#thank_you_page {
+  margin-right: 50px;
+  margin-left: 50px;
+}
+#welcome_page hgroup:first-of-type,
+#thank_you_page hgroup:first-of-type {
+  padding-top: 10px;
+  text-align: center;
+}
+#welcome_page hgroup:first-of-type h2,
+#thank_you_page hgroup:first-of-type h2 {
+  color: #652a80;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+#welcome_page hgroup:first-of-type h1,
+#thank_you_page hgroup:first-of-type h1 {
+  color: #d60b6d;
+  margin-top: 0px;
+  padding-top: 0px;
+  font-size: 50px;
+}
+#welcome_page video#welcome_video,
+#thank_you_page video#welcome_video {
+  margin: 20px;
+  margin-left: 40px;
+  width: 50%;
+  float: right;
+  border: 1px solid #ccc;
+}
+#welcome_page strong,
+#thank_you_page strong {
+  color: #652a80;
+}
+#welcome_page > strong,
+#thank_you_page > strong {
+  text-align: center;
+  font-size: 24px;
+}
+#welcome_page p,
+#thank_you_page p {
+  font-size: 18px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+#welcome_page input[type=email],
+#thank_you_page input[type=email] {
+  display: block;
+  font-size: 18px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid #666;
+}
+#welcome_page textarea,
+#thank_you_page textarea {
+  display: block;
+  width: 100%;
+  height: 100px;
+  resize: none;
+  border-radius: 5px;
+  border: 1px solid #666;
+  padding: 5px;
+  font-size: 18px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+#welcome_page #thanks_again,
+#thank_you_page #thanks_again {
+  clear: both;
+  font-size: 24px;
+  color: #652a80;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* RECORDING PAGE */
+#recording_page {
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 30px;
+  padding-top: 30px;
+}
+#recording_page .prompt {
+  max-width: 600px;
+}
+#recording_page .prompt h1 {
+  margin-bottom: 0px;
+  font-size: 36px;
+  color: #652a80;
+}
+#recording_page .prompt p {
+  font-size: 18px;
+}
+#recording_page #p5canvas {
+  width: 250px;
+  height: 75px;
+  margin-right: auto;
+  margin-left: auto;
+  overflow: hidden;
+}
+#recording_page .sol_RecorderInterface button {
+  display: block;
+  width: 100%;
+  font-size: 24px;
+  margin: 5px;
+}
+#recording_page .sol_FilePicker {
+  display: block;
+  background-color: #652a80;
+  color: white;
+  border: 1px solid #471d5a;
+  border-bottom: 5px solid #471d5a;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 24px;
+  padding: 3px;
+  cursor: pointer;
+}
+#recording_page .sol_FilePicker input[type=file] {
+  display: none;
+}
+#recording_page .sol_FilePicker:hover {
+  background-color: white;
+  color: #471d5a;
+}
+#recording_page .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#recording_page .row .left_panel {
+  flex: 1 0 350px;
+  margin: 20px;
+  padding-bottom: 30px;
+  max-width: 50%;
+}
+#recording_page .row .left_panel > strong.or {
+  display: block;
+  text-align: center;
+  text-decoration: underline;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#recording_page .row .left_panel h2 {
+  font-size: 36px;
+  color: #d60b6d;
+  margin-bottom: 5px;
+}
+#recording_page .row .left_panel textarea {
+  display: block;
+  width: 100%;
+  height: 100px;
+  resize: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 18px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+#recording_page .row #uploads_wrapper {
+  flex: 1 0 350px;
+  display: inline-block;
+  margin: 20px;
+  margin-top: 50px;
+  background-color: #eee;
+}
+
+.sol_MediaUploads {
+  box-sizing: border-box;
+  padding: 30px;
+}
+.sol_MediaUploads .nothing {
+  text-align: center;
+  font-style: italic;
+}
+.sol_MediaUploads .sol_MediaInterface {
+  padding: 5px;
+}
+.sol_MediaUploads .sol_MediaInterface * {
+  vertical-align: middle;
+}
+.sol_MediaUploads .sol_MediaInterface input[type=checkbox] {
+  display: inline-block;
+  margin: 10px;
+}
+.sol_MediaUploads .sol_MediaInterface audio {
+  background: none;
+}
+.sol_MediaUploads .sol_MediaInterface img {
+  max-width: 80%;
+  max-height: 200px;
+}
+.sol_MediaUploads .sol_MediaInterface[checked=false] {
+  opacity: 0.5;
 }
 
 /*# sourceMappingURL=index.css.map */
