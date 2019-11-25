@@ -51,7 +51,7 @@ class MediaUploads{
 
   add(blob) {
     try {
-      let item = new MediaInterface(blob);
+      let item = new MediaInterface(blob, this);
       this.items.push(item);
       this.mediaList.appendChild(item.makeHTML())
 

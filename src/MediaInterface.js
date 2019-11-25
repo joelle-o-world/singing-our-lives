@@ -1,5 +1,5 @@
 export class MediaInterface {
-  constructor(blob) {
+  constructor(blob, parentMediaUploads) {
     if(!blob instanceof Blob)
       throw "MediaInterface expects a blob.";
 
@@ -7,6 +7,8 @@ export class MediaInterface {
     this.blob = blob;
     let [mime, codec] = blob.type.split(';');
     this.mediaKind = mime.split('/')[0];
+
+    this.parentMediaUploads = parentMediaUploads
 
     this.makeHTML();
   }
@@ -27,7 +29,7 @@ export class MediaInterface {
       this.enabled = checkbox.checked;
       this.div.setAttribute('checked', this.enabled);
       if(this.parentMediaUploads)
-        this.parentMediaUploads.updateState();
+        this.parentMediaUploads.update();
     });
 
     // Create media

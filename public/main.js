@@ -11,7 +11,7 @@ window.onload = function() {
   
 
   mediauploads = new SingingOurLives.MediaUploads();
-  mediauploads.onupdate = updateSendBtnState()
+  mediauploads.onupdate = updateSendBtnState;
 
   let recorderIO = new SingingOurLives.RecorderInterface();
   //pass blobs created by RecorderInterface to MediaUploads
@@ -103,8 +103,16 @@ function gotoRecordingPage() {
 }
 
 function updateSendBtnState() {
+  console.log("## Updating button state")
   let sendbtn = document.getElementById('send_recordings');
   let n = mediauploads.nChecked
-  sendbtn.innerText = `Send ${n} files & continue...`
+  console.log(n)
+  if(n == 1)
+    sendbtn.innerText = `Send 1 file & continue...`
+  else if(n > 1)
+    sendbtn.innerText = `Send ${n} files & continue...`
+  else
+    sendbtn.innerText = 'Send & continue...';
+    
   sendbtn.disabled = n == 0 && document.getElementById('lyrics_textarea').value.length == 0;
 }
