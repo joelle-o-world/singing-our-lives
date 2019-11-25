@@ -4,7 +4,7 @@
 /*magenta: #9b1750*/
 /*red: #d31640*/
 body {
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-family: Wilson, Futura, Verdana, sans-serif;
   font-weight: 100;
   background-color: white;
 }
@@ -15,6 +15,7 @@ a:link {
 
 button {
   background-color: #652a80;
+  font-family: Wilson, Futura, Verdana, sans-serif;
   color: white;
   border: 1px solid #652a80;
   padding: 3px;
@@ -146,7 +147,7 @@ footer .logo_group img.logo {
 #thank_you_page input[type=email] {
   display: block;
   font-size: 18px;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-family: Wilson, Futura, Verdana, sans-serif;
   border-radius: 5px;
   padding: 5px;
   border: 1px solid #666;
@@ -161,7 +162,7 @@ footer .logo_group img.logo {
   border: 1px solid #666;
   padding: 5px;
   font-size: 18px;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-family: Wilson, Futura, Verdana, sans-serif;
 }
 #welcome_page #thanks_again,
 #thank_you_page #thanks_again {
@@ -255,7 +256,7 @@ footer .logo_group img.logo {
   border-radius: 5px;
   padding: 5px;
   font-size: 18px;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-family: Wilson, Futura, Verdana, sans-serif;
 }
 #recording_page .row #uploads_wrapper {
   flex: 1 0 350px;

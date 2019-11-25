@@ -7,7 +7,7 @@
 $color1: #d60b6d;
 $color2: #652a80;
 $color3: #471d5a;
-$font-family: "Trebuchet MS", Helvetica, sans-serif;
+$font-family: Wilson, Futura, Verdana, sans-serif;
 
 body {
   font-family: $font-family;
@@ -21,6 +21,7 @@ a:link {
 
 button {
   background-color: $color2;
+  font-family: $font-family;
   color: white;
   border: 1px solid $color2;
   padding:3px;
