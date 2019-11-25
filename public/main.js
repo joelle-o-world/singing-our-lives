@@ -70,8 +70,11 @@ function finishedRecording() {
     type: blob.type
   })));
 
+  document.getElementById('lyrics_textarea').value = ''
+
   // Finally turn to the thank you page.
   showPage('thank_you_page');
+  updateSendBtnState()
 }
 
 function thankYouForm(e) {
