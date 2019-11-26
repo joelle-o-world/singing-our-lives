@@ -31,9 +31,9 @@ function setup_visualiser(){
   audioin = new p5.AudioIn(err => console.error(err));
   audioin.start(() => {
     isVisualiserRunning = true;
-    console.log('## mic started successfully')
+    //console.log('## mic started successfully')
   }, () => {
-    console.error("Mic failed")
+    //console.error("Mic failed")
   })
 
   window.audioin = audioin
