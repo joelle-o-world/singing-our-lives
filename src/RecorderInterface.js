@@ -84,11 +84,9 @@ class RecorderInterface {
   }
 
   record() {
-    console.log("## Calling record()");
     this.updateState("requestingAudio");
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {//Check whether getUserMedia is supported by the browser before running anything else
-      console.log('## getUserMedia supported.');//Print if it is supported
 
       navigator.mediaDevices.getUserMedia ({
         audio: true,
@@ -97,7 +95,6 @@ class RecorderInterface {
       .then(stream => { //execute if successful
 
         this.updateState('recording');
-        console.log("## Stream sucessfully established. Recording...");
         let audioElement = document.getElementById('recorderAudio');
 
         let mimeType = undefined;
@@ -120,13 +117,11 @@ class RecorderInterface {
 
         //event handler, executed whenever new data is available from the MediaRecorder
         mediaRecorder.addEventListener('dataavailable', e => {
-          console.log('## data available', e.data.type);
           chunks.push(e.data);
         })
 
         //event handler, executed when MediaRecorder.stop() is called:
         mediaRecorder.addEventListener('stop', e => {
-          console.log('## mediaRecorder.onstop event ocurred.');
           let mime = chunks[0].type;
           if(chunks.some(chunk => chunk.type != mime))
             throw "Something bad happened.";
@@ -149,7 +144,6 @@ class RecorderInterface {
   }
 
   stop() {
-    console.log("## Calling stop()");
     mediaRecorder.stop();
     this.updateState("recorded");
   }

@@ -88,7 +88,6 @@ function newConnection(socket){
       let filepath = path.resolve(sessionDirectory, filename);
       sessionAudioFiles.push(filepath);
 
-      console.log("## MIME: ", MIME)
 
       // Create the session directory if it doesn't exist.
       if(!fs.existsSync(sessionDirectory))

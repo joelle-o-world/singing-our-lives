@@ -1,5 +1,4 @@
 const socket = io();
-console.log("## Socket: ", socket)
 
 
 
@@ -103,7 +102,6 @@ function gotoRecordingPage() {
 }
 
 function updateSendBtnState() {
-  console.log("## Updating button state")
   let sendbtn = document.getElementById('send_recordings');
   let n = mediauploads.nChecked
   console.log(n)
@@ -113,6 +111,6 @@ function updateSendBtnState() {
     sendbtn.innerText = `Send ${n} files & continue...`
   else
     sendbtn.innerText = 'Send & continue...';
-    
+
   sendbtn.disabled = n == 0 && document.getElementById('lyrics_textarea').value.length == 0;
 }

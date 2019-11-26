@@ -6,7 +6,6 @@ if(!window.MediaRecorder)
 (function() {
 
 	var promisifiedOldGUM = function(constraints, successCallback, errorCallback) {
-    console.log("## call to promisifiedGUM")
 
 		// First get ahold of getUserMedia, if present
 		var getUserMedia = (navigator.getUserMedia ||
