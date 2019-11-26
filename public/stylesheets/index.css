@@ -267,6 +267,16 @@ footer .logo_group img.logo {
   background-color: #eee;
 }
 
+.consent_form {
+  font-size: 18px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-bottom: 7px;
+}
+.consent_form input[type=checkbox] {
+  padding-right: 10px;
+}
+
 .sol_MediaUploads {
   box-sizing: border-box;
   padding: 30px;

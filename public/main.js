@@ -112,5 +112,7 @@ function updateSendBtnState() {
   else
     sendbtn.innerText = 'Send & continue...';
 
-  sendbtn.disabled = n == 0 && document.getElementById('lyrics_textarea').value.length == 0;
+  let lyrics = document.getElementById('lyrics_textarea')
+  let consent = document.getElementById('contributions_consent')
+  sendbtn.disabled = !((n > 0 || lyrics.value.length) && consent.checked);
 }

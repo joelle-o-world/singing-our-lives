@@ -300,6 +300,19 @@ footer {
       background-color: #eee;
     }
   }
+
+  
+}
+
+.consent_form {
+  font-size: 18px;
+  max-width:500px;
+  margin-left:auto;
+  margin-bottom:7px;
+
+  input[type=checkbox] {
+    padding-right:10px;
+  }
 }
 
 .sol_MediaUploads {

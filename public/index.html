@@ -88,9 +88,18 @@
 
           <h2>Send song lyrics or other text:</h2>
           
-          <textarea name="lyrics" id="lyrics_textarea" placeholder="Enter text here..." onkeydown=updateSendBtnState()></textarea>
+          <textarea name="lyrics" id="lyrics_textarea" placeholder="Enter text here..." onkeyup=updateSendBtnState()></textarea>
         </div>
         <span id='uploads_wrapper'></span>
+
+        <div class='consent_form'>
+          <input 
+            type='checkbox' 
+            id='contributions_consent' 
+            onchange='updateSendBtnState()' 
+          />
+          I consent for Together Productions to use my contributions on this website.
+        </div>
       </div>
       
 
@@ -118,7 +127,10 @@
         <p>Please fill-in your details here to join our mailing list.</p>
         <input name="email" type=email placeholder="email (optional)" />
         <textarea name="comment" placeholder="Anything else to add?"></textarea>
-        <p><input type="checkbox" name="consent"/>Please tick here to indicate that you allow Together Productions to use your contributions.</p>
+        <div class='consent_form'>
+          <input type="checkbox" name="consent" />
+          I would like Together Productions to stay in touch by email with project updates and general information.
+        </div>
         <button class=nextbtn onclick="thankYouForm(event)">Submit</button>
       </form>
       
