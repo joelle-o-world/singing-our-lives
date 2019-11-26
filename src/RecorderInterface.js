@@ -12,7 +12,6 @@ const mimePriorities = [
 let mediaRecorder;
 class RecorderInterface {
   constructor() {
-    this.recordings = [];
 
     this.onrecord = null;
 
@@ -28,7 +27,7 @@ class RecorderInterface {
     //create a new div to contain the HTML for this object:
     this.recorderBody = document.createElement('div');
     //give it a class name to stylize it later:
-    this.recorderBody.className = 'recorder_body';
+    this.recorderBody.className = 'sol_RecorderInterface';
 
     //create a record button:
     this.recordbutton = document.createElement('button');
@@ -36,37 +35,15 @@ class RecorderInterface {
     this.recordbutton.innerHTML = 'Start Recording';
     this.recordbutton.addEventListener("click", () => this.record());
 
-    //create a heading:
-    this.heading = document.createElement('h1');
-    this.heading.id = 'recorder_heading';
-    this.heading.innerHTML = 'Make a new recording:';
-
-    //create a provocation:
-    this.provo_div = document.createElement('div');
-    this.provo_div.className = 'provocation_text';
-
-    this.provo_text = document.createElement('p');
-    this.provo_text.innerHTML = "We're interested in receiving any musical ideas to help influence or write our songs.  Perhaps there's a favourite folk song you could share or you just fancy improvising a melody or beat.  Press record and perform, sing, or playback a track.";
-    this.provo_div.appendChild(this.provo_text);
-
     // create a stop recording button
     this.stoprecordingbutton = document.createElement("button");
     this.stoprecordingbutton.className = "recorderButton";
     this.stoprecordingbutton.innerHTML = "Stop Recording";
     this.stoprecordingbutton.addEventListener("click", () => this.stop());
 
-    // Add an upload button
-    this.uploadBtn = document.createElement('button');
-    this.uploadBtn.className = 'recorderButton';
-    this.uploadBtn.innerText = 'Send 0 recordings';
-    this.uploadBtn.addEventListener('click', () => this.upload())
-
     //append all elements to the recorderBody:
-    this.recorderBody.appendChild(this.heading);
-    this.recorderBody.appendChild(this.provo_div);
     this.recorderBody.appendChild(this.recordbutton);
     this.recorderBody.appendChild(this.stoprecordingbutton);
-    this.recorderBody.appendChild(this.uploadBtn);
     return this.recorderBody;
   }
 
@@ -104,12 +81,6 @@ class RecorderInterface {
           console.warn("Unknown state:", state);
       }
     }
-
-    let nEnabledRecordings = this.recordings.filter(o => o.enabled).length
-    this.uploadBtn.innerText = "Send "
-      +  nEnabledRecordings
-      + " recordings";
-    this.uploadBtn.hidden = nEnabledRecordings == 0;
   }
 
   record() {
@@ -147,16 +118,14 @@ class RecorderInterface {
 
         mediaRecorder.start(); //start recording
 
-
-
         //event handler, executed whenever new data is available from the MediaRecorder
-        mediaRecorder.ondataavailable = e => {
+        mediaRecorder.addEventListener('dataavailable', e => {
           console.log('## data available', e.data.type);
           chunks.push(e.data);
-        }
+        })
 
         //event handler, executed when MediaRecorder.stop() is called:
-        mediaRecorder.onstop = e => {
+        mediaRecorder.addEventListener('stop', e => {
           console.log('## mediaRecorder.onstop event ocurred.');
           let mime = chunks[0].type;
           if(chunks.some(chunk => chunk.type != mime))
@@ -165,9 +134,10 @@ class RecorderInterface {
           let blob = new Blob(chunks, {type: mime});
           if(this.onrecord){
             this.onrecord(blob);
-          }
+          } else
+            console.warn('no behaviour defined for handling new recordings.')
 
-        }
+        })
       })
       .catch(function(err) {//execute if error
         console.error('The following getUserMedia error occured: ' + err);
@@ -182,24 +152,6 @@ class RecorderInterface {
     console.log("## Calling stop()");
     mediaRecorder.stop();
     this.updateState("recorded");
-  }
-
-  clearPlaybacks() {
-    this.recordings = [];
-    while(this.playbacksDiv.firstChild)
-      this.playbacksDiv.removeChild(this.playbacksDiv.firstChild);
-
-    this.updateState();
-  }
-
-  upload() {
-    let blobsToUpload = this.recordings.filter(o => o.enabled)
-      .map(o => o.audioBlob);
-
-    if(this.onupload)
-      this.onupload(blobsToUpload);
-
-    this.clearPlaybacks();
   }
 }
 

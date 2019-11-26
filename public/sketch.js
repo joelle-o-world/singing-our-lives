@@ -10,8 +10,13 @@ let audioin, recorder, soundfile;
 
 let n = 0.0;
 
-function setup(){
-  canvas = createCanvas(windowWidth,windowHeight);
+function setup() {
+  // Do nothing
+}
+
+let isVisualiserRunning = false;
+function setup_visualiser(){
+  canvas = createCanvas(windowWidth,300);
   canvas.parent('p5canvas');
 
   audio_segs = 21;
@@ -23,18 +28,27 @@ function setup(){
     buffer.push(0.0);
   }
 
-  audioin = new p5.AudioIn();
-  audioin.start();
+  audioin = new p5.AudioIn(err => console.error(err));
+  audioin.start(() => {
+    isVisualiserRunning = true;
+    console.log('## mic started successfully')
+  }, () => {
+    console.error("Mic failed")
+  })
+
+  window.audioin = audioin
 }
 
-function draw(){
-  getAudioContext().resume();
-  var vol = audioin.getLevel();
-  var r = vol * 300;
-  // var r = noise(n) * 120;
-  background(255);
-  audiotape.update(r);
-  n += 0.1;
+function draw() { 
+  if(isVisualiserRunning) {
+    getAudioContext().resume();
+    var vol = audioin.getLevel();
+    var r = vol * 300;
+    // var r = noise(n) * 120;
+    background(255);
+    audiotape.update(r);
+    n += 0.1;
+}
 }
 
 function windowResized(){

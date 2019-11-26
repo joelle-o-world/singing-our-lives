@@ -5,19 +5,22 @@
   "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "npm install; npx webpack",
+    "build": "npx webpack; sass src/sass:public/stylesheets",
     "start": "node server/index.js"
   },
   "author": "Sean Norris",
   "license": "ISC",
   "dependencies": {
+    "audio-recorder-polyfill": "^0.1.6",
     "express": "^4.17.1",
     "ext-name": "^5.0.0",
     "fluent-ffmpeg": "^2.1.2",
+    "md-gum-polyfill": "^1.0.0",
     "p5": "^0.10.2",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
+    "sass": "^1.23.7",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9"
   }
