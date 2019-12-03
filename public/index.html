@@ -83,14 +83,16 @@
           <strong class='or'>OR</strong>
           <h2>Send a recording or photo saved on your computer:</h2>
           <div id='picker_wrapper'></div>
-
-          <strong class='or'>OR</strong>
-
-          <h2>Send song lyrics or other text:</h2>
-          
-          <textarea name="lyrics" id="lyrics_textarea" placeholder="Enter text here..." onkeyup=updateSendBtnState()></textarea>
         </div>
-        <span id='uploads_wrapper'></span>
+        <span class='rightcol'>
+          <span id='uploads_wrapper'></span>
+
+          <div class='lyrics_form'>
+            <h3>Add song lyrics or other text:</h2>
+            
+            <textarea name="lyrics" id="lyrics_textarea" placeholder="Enter text here..." onkeyup=updateSendBtnState()></textarea>
+          </div>
+        </span>
 
         <div class='consent_form'>
           <input 
@@ -156,7 +158,6 @@
       <a href=https://www.artscouncil.org.uk/>
         <img src="assets/imgs/lottery_logo.jpg" class='logo' />
       </a>
-      
     </div>
   </footer>
 </body>
