@@ -17,7 +17,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "md-gum-polyfill": "^1.0.0",
     "p5": "^0.10.2",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.5.0"
   },
   "devDependencies": {
     "sass": "^1.23.7",
