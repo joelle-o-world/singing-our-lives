@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "audio-recorder-polyfill": "^0.1.6",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "ext-name": "^5.0.0",
     "fluent-ffmpeg": "^2.1.2",
     "md-gum-polyfill": "^1.0.0",
